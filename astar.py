@@ -4,6 +4,7 @@
 """ generic A-Star path searching algorithm """
 
 import sys
+from abc import ABCMeta, abstractmethod
 
 __author__ = "Julien Rialland"
 __copyright__ = "Copyright 2012, J.Rialland"
@@ -16,14 +17,20 @@ __status__ = "Production"
 
             
 class AStar:
+
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
     def heuristic_cost_estimate(self,start, goal):
         """computes the estimated (rough) distance between two random nodes, this method must be implemented in a subclass"""
         raise NotImplementedException
 
+    @abstractmethod
     def distance_between(self,n1, n2):
         """gives the real distance between two adjacent nodes n1 and n2 (i.e n2 belongs to the list of n1's neighbors), this method must be implemented in a subclass"""
         raise NotImplementedException
 
+    @abstractmethod
     def neighbors(self, node):
         """for a given node, returns (or yields) the list of its neighbors. this method must be implemented in a subclass"""
         raise NotImplementedException
