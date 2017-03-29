@@ -90,6 +90,7 @@ start = (1, 1)  # we choose to start at the upper left corner
 goal = (w - 2, h - 2)  # we want to reach the lower right corner
 
 # let's solve it
-foundPath = MazeSolver(m).astar(start, goal)
+foundPath = list(MazeSolver(m).astar(start, goal))
+
 # print the solution
-print(drawmaze(m, foundPath))
+print(drawmaze(m, list(foundPath)))

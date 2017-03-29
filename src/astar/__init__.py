@@ -55,15 +55,18 @@ class AStar:
     def is_goal_reached(self, current, goal):
         return current == goal
 
-    def reconstruct_path(self, last):
-        path = []
-        current = last
-        while current:
-            path.append(current.data)
-            current = current.came_from
-        return reversed(path)
+    def reconstruct_path(self, last, reversePath=False):
+        def _gen():
+            current = last
+            while current:
+                yield current.data
+                current = current.came_from
+        if reversePath:
+            return _gen()
+        else:
+            return reversed(list(_gen()))
 
-    def astar(self, start, goal):
+    def astar(self, start, goal, reversePath=False):
         """applies the a-star path searching algorithm in order to find a route between a 'start' node and a 'goal' node"""
 
         class AutoDict(dict):
@@ -92,7 +95,7 @@ class AStar:
             current.in_by_fscores = False
             current.closed = True
             if self.is_goal_reached(current.data, goal):
-                return self.reconstruct_path(current)
+                return self.reconstruct_path(current, reversePath)
             for neighbor in [searchNodes[n] for n in self.neighbors(current.data)]:
                 if neighbor.closed:
                     continue
