@@ -3,7 +3,6 @@
 
 """ generic A-Star path searching algorithm """
 
-import sys
 from abc import ABCMeta, abstractmethod
 from heapq import heappush, heappop, heapify
 
@@ -19,10 +18,10 @@ __status__ = "Production"
 class SearchNode:
     __slots__ = ('data', 'gscore', 'fscore', 'closed', 'came_from', 'in_by_fscores')
 
-    def __init__(self, data, gscore=sys.maxint):
+    def __init__(self, data, gscore=float('inf')):
         self.data = data
         self.gscore = gscore
-        self.fscore = sys.maxint
+        self.fscore = float('inf')
         self.closed = False
         self.came_from = None
         self.in_by_fscores = False
