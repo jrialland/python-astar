@@ -22,7 +22,7 @@ class SearchNode:
     def __init__(self, data, gscore=sys.maxint):
         self.data = data
         self.gscore = gscore
-        self.fscore = 0
+        self.fscore = sys.maxint
         self.closed = False
         self.came_from = None
         self.in_by_fscores = False
@@ -98,16 +98,17 @@ class AStar:
                 return self.reconstruct_path(current, reversePath)
             for neighbor in [searchNodes[n] for n in self.neighbors(current.data)]:
                 if neighbor.closed:
-                    continue
+                    continue #ignore a neighbor that have already been visited
                 tentative_g_score = current.gscore + \
-                    self.distance_between(current.data, neighbor.data)
-                if not neighbor.in_by_fscores or tentative_g_score < neighbor.gscore:
-                    neighbor.came_from = current
-                    neighbor.gscore = tentative_g_score
-                    neighbor.fscore = tentative_g_score + \
-                        self.heuristic_cost_estimate(neighbor.data, goal)
+                    self.distance_between(current.data, neighbor.data) #the distance from the start to the neighbor
+                if not neighbor.in_by_fscores:#discover a new node (ie add it to list)
                     neighbor.in_by_fscores = True
                     heappush(by_fscores, neighbor)
+                elif tentative_g_score >= neighbor.gscore:
+                    continue # this is not the better path
+                neighbor.came_from = current
+                neighbor.gscore = tentative_g_score
+                neighbor.fscore = tentative_g_score + self.heuristic_cost_estimate(neighbor.data, goal)
         return None
 
 __all__ = ['AStar']
