@@ -36,8 +36,8 @@ class AStar:
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def heuristic_cost_estimate(self, start, goal):
-        """Computes the estimated (rough) distance between two random nodes, this method must be implemented in a subclass"""
+    def heuristic_cost_estimate(self, current, goal):
+        """Computes the estimated (rough) distance between a node and the goal, this method must be implemented in a subclass. The second parameter is always the goal."""
         raise NotImplementedError
 
     @abstractmethod
