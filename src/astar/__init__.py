@@ -19,7 +19,7 @@ __status__ = "Production"
 class SearchNode:
     __slots__ = ('data', 'gscore', 'fscore', 'closed', 'came_from', 'in_by_fscores')
 
-    def __init__(self, data, gscore=0):
+    def __init__(self, data, gscore=sys.maxint):
         self.data = data
         self.gscore = gscore
         self.fscore = 0
