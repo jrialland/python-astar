@@ -37,19 +37,19 @@ class AStar:
     @abstractmethod
     def heuristic_cost_estimate(self, start, goal):
         """Computes the estimated (rough) distance between two random nodes, this method must be implemented in a subclass"""
-        raise NotImplementedException
+        raise NotImplementedError
 
     @abstractmethod
     def distance_between(self, n1, n2):
         """Gives the real distance between two adjacent nodes n1 and n2 (i.e n2 belongs to the list of n1's neighbors).
            n2 is guaranteed to belong to the list returned by the call to neighbors(n1).
            This method must be implemented in a subclass."""
-        raise NotImplementedException
+        raise NotImplementedError
 
     @abstractmethod
     def neighbors(self, node):
         """For a given node, returns (or yields) the list of its neighbors. this method must be implemented in a subclass"""
-        raise NotImplementedException
+        raise NotImplementedError
 
     def is_goal_reached(self, current, goal):
         return current == goal
