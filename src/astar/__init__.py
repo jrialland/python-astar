@@ -17,7 +17,7 @@ __status__ = "Production"
 
 
 class SearchNode:
-    __slots__ = ('data', 'gscore', 'fscore', 'closed', 'came_from')
+    __slots__ = ('data', 'gscore', 'fscore', 'closed', 'came_from', 'in_by_fscores')
 
     def __init__(self, data, gscore=0):
         self.data = data
@@ -25,6 +25,7 @@ class SearchNode:
         self.fscore = 0
         self.closed = False
         self.came_from = None
+        self.in_by_fscores = False
 
     def __lt__(self, b):
         return self.fscore < b.fscore
@@ -64,30 +65,31 @@ class AStar:
 
     def astar(self, start, goal):
         """applies the a-star path searching algorithm in order to find a route between a 'start' node and a 'goal' node"""
-        class AutoDict(dict):
 
+        class AutoDict(dict):
+            """A dictionary that creates new entries when a key is missing"""
             def __missing__(self, k):
                 s = SearchNode(data=k)
                 self.__setitem__(k, s)
                 return s
 
         searchNodes = AutoDict()
+
         goalNode = searchNodes[goal] = SearchNode(goal)
         startNode = searchNodes[start] = SearchNode(data=start, gscore=0)
 
-        # The set of tentative nodes to be evaluated, initially containing the
-        # start node
-        openset = set([startNode])
-
-        # Estimated total cost from start to goal through y.
+        # Estimated total cost from start to goal.
         startNode.fscore = self.heuristic_cost_estimate(
             startNode.data, goalNode.data)
-        by_fscores = [startNode]
-        heapify(by_fscores)
 
-        while openset:
+        #priority queue that stores the nodes to be tested
+        by_fscores = []
+        heappush(by_fscores, startNode)
+        startNode.in_by_fscores = True
+
+        while by_fscores:
             current = heappop(by_fscores)
-            openset.discard(current)
+            current.in_by_fscores = False
             current.closed = True
             if self.is_goal_reached(current.data, goal):
                 return self.reconstruct_path(current)
@@ -96,12 +98,12 @@ class AStar:
                     continue
                 tentative_g_score = current.gscore + \
                     self.distance_between(current.data, neighbor.data)
-                if neighbor not in openset or tentative_g_score < neighbor.gscore:
-                    openset.add(neighbor)
+                if not neighbor.in_by_fscores or tentative_g_score < neighbor.gscore:
                     neighbor.came_from = current
                     neighbor.gscore = tentative_g_score
                     neighbor.fscore = tentative_g_score + \
                         self.heuristic_cost_estimate(neighbor.data, goal)
+                    neighbor.in_by_fscores = True
                     heappush(by_fscores, neighbor)
         return None
 
