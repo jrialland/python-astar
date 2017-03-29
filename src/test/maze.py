@@ -3,6 +3,7 @@ from astar import AStar
 import sys
 import math
 
+
 def make_maze(w=30, h=30):
     """returns an ascii maze as a string"""
     from random import shuffle, randrange
@@ -30,6 +31,7 @@ def make_maze(w=30, h=30):
         result = result + (''.join(a + ['\n'] + b)) + '\n'
     return result.strip()
 
+
 def drawmaze(maze, set1=[], set2=[], c='#', c2='*'):
     """returns an ascii maze, drawing eventually one (or 2) sets of positions.
         useful to draw the solution found by the astar algorithm
@@ -50,6 +52,7 @@ def drawmaze(maze, set1=[], set2=[], c='#', c2='*'):
                 result = result + lines[j][i]
         result = result + '\n'
     return result
+
 
 class MazeSolver(AStar):
 

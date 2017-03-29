@@ -13,8 +13,8 @@ setup(
     long_description='generic a-star implementation',
     zip_safe=True,
     license='BSD',
-    package_dir={'':'src'},
-    packages = find_packages("src", exclude=["test"]),
+    package_dir={'': 'src'},
+    packages=find_packages("src", exclude=["test"]),
     include_package_data=True,
     classifiers=[
         'Intended Audience :: Developers',

@@ -16,7 +16,8 @@ __status__ = "Production"
 
 
 class SearchNode:
-    __slots__ = ('data', 'gscore', 'fscore', 'closed', 'came_from', 'in_by_fscores')
+    __slots__ = ('data', 'gscore', 'fscore',
+                 'closed', 'came_from', 'in_by_fscores')
 
     def __init__(self, data, gscore=float('inf')):
         self.data = data
@@ -69,7 +70,9 @@ class AStar:
         """applies the a-star path searching algorithm in order to find a route between a 'start' node and a 'goal' node"""
 
         class AutoDict(dict):
+
             """A dictionary that creates new entries when a key is missing"""
+
             def __missing__(self, k):
                 s = SearchNode(data=k)
                 self.__setitem__(k, s)
@@ -84,7 +87,7 @@ class AStar:
         startNode.fscore = self.heuristic_cost_estimate(
             startNode.data, goalNode.data)
 
-        #priority queue that stores the nodes to be tested
+        # priority queue that stores the nodes to be tested
         by_fscores = []
         heappush(by_fscores, startNode)
         startNode.in_by_fscores = True
@@ -97,18 +100,20 @@ class AStar:
                 return self.reconstruct_path(current, reversePath)
             for neighbor in [searchNodes[n] for n in self.neighbors(current.data)]:
                 if neighbor.closed:
-                    continue #ignore a neighbor that have already been visited
+                    continue  # ignore a neighbor that have already been visited
                 tentative_g_score = current.gscore + \
-                    self.distance_between(current.data, neighbor.data) #the distance from the start to the neighbor
-                if not neighbor.in_by_fscores:#discover a new node (ie add it to list)
+                    self.distance_between(current.data, neighbor.data)
+                                          # the distance from the start to the
+                                          # neighbor
+                if not neighbor.in_by_fscores:  # discover a new node (ie add it to list)
                     neighbor.in_by_fscores = True
                     heappush(by_fscores, neighbor)
                 elif tentative_g_score >= neighbor.gscore:
-                    continue # this is not the better path
+                    continue  # this is not the better path
                 neighbor.came_from = current
                 neighbor.gscore = tentative_g_score
-                neighbor.fscore = tentative_g_score + self.heuristic_cost_estimate(neighbor.data, goal)
+                neighbor.fscore = tentative_g_score + \
+                    self.heuristic_cost_estimate(neighbor.data, goal)
         return None
 
 __all__ = ['AStar']
-
