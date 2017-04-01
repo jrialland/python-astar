@@ -4,7 +4,7 @@
 """ generic A-Star path searching algorithm """
 
 from abc import ABCMeta, abstractmethod
-from heapq import heappush, heappop, heapify
+from heapq import heappush, heappop
 
 __author__ = "Julien Rialland"
 __copyright__ = "Copyright 2012-2017, J.Rialland"
@@ -14,26 +14,34 @@ __maintainer__ = __author__
 __email__ = "julien.rialland@gmail.com"
 __status__ = "Production"
 
-
-class SearchNode:
-    __slots__ = ('data', 'gscore', 'fscore',
-                 'closed', 'came_from', 'in_by_fscores')
-
-    def __init__(self, data, gscore=float('inf')):
-        self.data = data
-        self.gscore = gscore
-        self.fscore = float('inf')
-        self.closed = False
-        self.came_from = None
-        self.in_by_fscores = False
-
-    def __lt__(self, b):
-        return self.fscore < b.fscore
+Infinite = float('inf')
 
 
 class AStar:
-
     __metaclass__ = ABCMeta
+    __slots__ = ()
+
+    class SearchNode:
+        __slots__ = ('data', 'gscore', 'fscore',
+                     'closed', 'came_from', 'out_openset')
+
+        def __init__(self, data, gscore=Infinite, fscore=Infinite):
+            self.data = data
+            self.gscore = gscore
+            self.fscore = fscore
+            self.closed = False
+            self.out_openset = True
+            self.came_from = None
+
+        def __lt__(self, b):
+            return self.fscore < b.fscore
+
+    class SearchNodeDict(dict):
+
+        def __missing__(self, k):
+            v = AStar.SearchNode(k)
+            self.__setitem__(k, v)
+            return v
 
     @abstractmethod
     def heuristic_cost_estimate(self, current, goal):
@@ -53,6 +61,7 @@ class AStar:
         raise NotImplementedError
 
     def is_goal_reached(self, current, goal):
+        """ returns true when we can consider that 'current' is the goal"""
         return current == goal
 
     def reconstruct_path(self, last, reversePath=False):
@@ -67,53 +76,33 @@ class AStar:
             return reversed(list(_gen()))
 
     def astar(self, start, goal, reversePath=False):
-        """applies the a-star path searching algorithm in order to find a route between a 'start' node and a 'goal' node"""
-
-        class AutoDict(dict):
-
-            """A dictionary that creates new entries when a key is missing"""
-
-            def __missing__(self, k):
-                s = SearchNode(data=k)
-                self.__setitem__(k, s)
-                return s
-
-        searchNodes = AutoDict()
-
-        goalNode = searchNodes[goal] = SearchNode(goal)
-        startNode = searchNodes[start] = SearchNode(data=start, gscore=0)
-
-        # Estimated total cost from start to goal.
-        startNode.fscore = self.heuristic_cost_estimate(
-            startNode.data, goalNode.data)
-
-        # priority queue that stores the nodes to be tested
-        by_fscores = []
-        heappush(by_fscores, startNode)
-        startNode.in_by_fscores = True
-
-        while by_fscores:
-            current = heappop(by_fscores)
-            current.in_by_fscores = False
+        if self.is_goal_reached(start, goal):
+            return [start]
+        searchNodes = AStar.SearchNodeDict()
+        startNode = searchNodes[start] = AStar.SearchNode(
+            start, gscore=0, fscore=self.heuristic_cost_estimate(start, goal))
+        openSet = []
+        heappush(openSet, startNode)
+        while openSet:
+            current = heappop(openSet)
+            current.out_openset = True
             current.closed = True
-            if self.is_goal_reached(current.data, goal):
-                return self.reconstruct_path(current, reversePath)
             for neighbor in [searchNodes[n] for n in self.neighbors(current.data)]:
                 if neighbor.closed:
-                    continue  # ignore a neighbor that have already been visited
-                tentative_g_score = current.gscore + \
+                    continue
+                tentative_gscore = current.gscore + \
                     self.distance_between(current.data, neighbor.data)
-                                          # the distance from the start to the
-                                          # neighbor
-                if not neighbor.in_by_fscores:  # discover a new node (ie add it to list)
-                    neighbor.in_by_fscores = True
-                    heappush(by_fscores, neighbor)
-                elif tentative_g_score >= neighbor.gscore:
-                    continue  # this is not the better path
+                if tentative_gscore >= neighbor.gscore:
+                    continue
                 neighbor.came_from = current
-                neighbor.gscore = tentative_g_score
-                neighbor.fscore = tentative_g_score + \
+                if self.is_goal_reached(neighbor.data, goal):
+                    return self.reconstruct_path(neighbor, reversePath)
+                neighbor.gscore = tentative_gscore
+                neighbor.fscore = tentative_gscore + \
                     self.heuristic_cost_estimate(neighbor.data, goal)
+                if neighbor.out_openset:
+                    neighbor.out_openset = False
+                    heappush(openSet, neighbor)
         return None
 
 __all__ = ['AStar']
