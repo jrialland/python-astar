@@ -5,11 +5,11 @@ import astar
 
 class Station:
 
-    def __init__(self, id, nom, position):
+    def __init__(self, id, name, position):
         self.id = id
-        self.nom = nom
+        self.name = name
         self.position = position
-        self.liaisons = []
+        self.links = []
 
 
 class TanFinder(astar.AStar):
@@ -20,44 +20,44 @@ class TanFinder(astar.AStar):
     def distance_between(self, n1, n2):
         latA, longA = n1.position
         latB, longB = n2.position
+
         # convert degres to radians!!
         latA, latB, longA, longB = map(
             lambda d: d * math.pi / 180, (latA, latB, longA, longB))
-
+            
         x = (longB - longA) * math.cos((latA + latB) / 2)
-        y = (latB - latA)
-        d = math.sqrt(x**2 + y**2) * 6371
-        return d
+        y = latB - latA
+        return math.hypot(x, y)
 
     def neighbors(self, node):
-        return node.liaisons
+        return node.links
 
 
 def solve_tan(in_stream):
     stations = {}
-    id_depart = in_stream.readline().strip()
-    id_arrivee = in_stream.readline().strip()
+    id_start = in_stream.readline().strip()
+    id_goal = in_stream.readline().strip()
     N = int(in_stream.readline())
     for _ in range(N):
         items = in_stream.readline().strip().split(',')
         id = items[0]
-        nom = items[1].replace('"', '')
+        name = items[1].replace('"', '')
         position = float(items[3]), float(items[4])
-        stations[id] = Station(id, nom, position)
+        stations[id] = Station(id, name, position)
 
     M = int(in_stream.readline())
     for _ in range(M):
         s1, s2 = in_stream.readline().strip().split()
-        stations[s1].liaisons.append(stations[s2])
+        stations[s1].links.append(stations[s2])
 
-    depart = stations[id_depart]
-    arrive = stations[id_arrivee]
-    chemin = TanFinder().astar(depart, arrive)
+    start = stations[id_start]
+    goal = stations[id_goal]
+    path = TanFinder().astar(start, goal)
 
-    if chemin is None:
+    if path is None:
         return 'IMPOSSIBLE\n'
     else:
-        return ''.join([station.nom + '\n' for station in chemin])
+        return ''.join([station.name + '\n' for station in path])
 
 
 class TanFinderTest(unittest.TestCase):
