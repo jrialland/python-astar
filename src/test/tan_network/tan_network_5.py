@@ -1,7 +1,9 @@
-import sys, os
+import sys
+import os
 import math
 import unittest
 import astar
+
 
 class Station:
 
@@ -24,7 +26,7 @@ class TanFinder(astar.AStar):
         # convert degres to radians!!
         latA, latB, longA, longB = map(
             lambda d: d * math.pi / 180, (latA, latB, longA, longB))
-            
+
         x = (longB - longA) * math.cos((latA + latB) / 2)
         y = latB - latA
         return math.hypot(x, y)
@@ -63,7 +65,7 @@ def solve_tan(in_stream):
 class TanFinderTest(unittest.TestCase):
 
     def test_solveTan(self):
-        self.maxDiff=None
+        self.maxDiff = None
         rootdir = os.path.dirname(os.path.abspath(sys.argv[0]))
         with open(os.path.join(rootdir, 'tan_network_5.in.txt')) as inputFile:
             with open(os.path.join(rootdir, 'tan_network_5.out.txt')) as outputFile:
