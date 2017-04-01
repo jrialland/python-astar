@@ -1,0 +1,14 @@
+"line","name","colour","stripe"
+1,"Bakerloo Line","ab6612",NULL
+3,"Circle Line","f7dc00",NULL
+6,"Hammersmith & City Line","f5a6b3",NULL
+7,"Jubilee Line","767b7f",NULL
+11,"Victoria Line","0076bd",NULL
+2,"Central Line","df002c",NULL
+4,"District Line","0d6928",NULL
+5,"East London Line","f3ba22",NULL
+8,"Metropolitan Line","8b004c",NULL
+9,"Northern Line","000000",NULL
+10,"Piccadilly Line","002d73",NULL
+12,"Waterloo & City Line","89cbc1",NULL
+13,"Docklands Light Railway","00A77E","FFFFFF"
