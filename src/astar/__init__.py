@@ -82,6 +82,8 @@ class AStar:
         heappush(openSet, startNode)
         while openSet:
             current = heappop(openSet)
+            if self.is_goal_reached(current.data, goal):
+                return self.reconstruct_path(current, reversePath)
             current.out_openset = True
             current.closed = True
             for neighbor in [searchNodes[n] for n in self.neighbors(current.data)]:
@@ -92,8 +94,6 @@ class AStar:
                 if tentative_gscore >= neighbor.gscore:
                     continue
                 neighbor.came_from = current
-                if self.is_goal_reached(neighbor.data, goal):
-                    return self.reconstruct_path(neighbor, reversePath)
                 neighbor.gscore = tentative_gscore
                 neighbor.fscore = tentative_gscore + \
                     self.heuristic_cost_estimate(neighbor.data, goal)
