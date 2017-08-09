@@ -1,25 +1,33 @@
-
 #!/usr/bin/env python
+import sys
 from setuptools import setup, find_packages
+
+if not './src' in sys.path:
+    sys.path.append('./src')
+import astar
 
 setup(
     name='astar',
-    version='0.9',
-    author='Julien Rialland',
-    author_email='julien.rialland@gmail.com',
+    version=astar.__version__,
+    author=astar.__author__,
+    author_email=astar.__email__,
+    maintainer=astar.__maintainer__,
     url='http://github.com/jrialland/python-astar',
-    description='generic a-star implementation',
+    description='A-* algorithm implementation',
     provides=['astar'],
-    long_description='generic a-star implementation',
+    long_description='Provides path finding using A-*',
     zip_safe=True,
-    license='BSD',
-    package_dir={'': 'src'},
-    packages=find_packages("src", exclude=["test"]),
+    license=astar.__license__,
+    package_dir={'astar': 'src/astar'},
+    packages=['astar'],
     include_package_data=True,
+    keywords=['a-star', 'search','path finding'],
+    platforms=['any'],
     classifiers=[
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
         'Topic :: Software Development',
+        'Topic :: Scientific/Engineering :: Information Analysis',
         'Programming Language :: Python',
     ]
 )
