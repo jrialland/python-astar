@@ -1,3 +1,6 @@
+.. image:: https://badge.fury.io/py/astar.svg
+    :target: https://badge.fury.io/py/astar
+    
 python-astar
 ============
 
