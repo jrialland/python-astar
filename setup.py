@@ -21,7 +21,7 @@ setup(
     package_dir={'astar': 'src/astar'},
     packages=['astar'],
     include_package_data=True,
-    keywords=['a-star', 'search','path finding'],
+    keywords=['a-star', 'search', 'path finding'],
     platforms=['any'],
     classifiers=[
         'Intended Audience :: Developers',
