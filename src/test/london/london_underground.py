@@ -5,12 +5,15 @@ import csv
 import math
 from difflib import SequenceMatcher
 
+
 class Station:
+
     def __init__(self, id, name, position):
         self.id = id
         self.name = name
         self.position = position
         self.links = []
+
 
 def build_data():
     """builds the 'map' by reading the data files"""
@@ -46,6 +49,7 @@ def get_station_by_name(stations, name):
     else:
         return None
 
+
 def get_path(s1, s2):
     """ runs astar on the map"""
 
@@ -62,6 +66,7 @@ def get_path(s1, s2):
 
     return astar.find_path(s1, s2, neighbors_fnct=lambda s: s.links, heuristic_cost_estimate_fnct=distance, distance_between_fnct=distance)
 
+
 if __name__ == '__main__':
 
     if len(sys.argv) != 3:
@@ -72,8 +77,10 @@ if __name__ == '__main__':
     stations = build_data()
 
     station1 = get_station_by_name(stations, sys.argv[1])
+    print('Station 1 : ' + station1.name)
     station2 = get_station_by_name(stations, sys.argv[2])
-
+    print('Station 2 : ' + station2.name)
+    print('-' * 80)
     path = get_path(station1, station2)
 
     if path:
@@ -81,4 +88,3 @@ if __name__ == '__main__':
             print(s.name)
     else:
         raise Exception('path not found!')
-
