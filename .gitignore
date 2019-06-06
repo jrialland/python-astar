@@ -1,3 +1,4 @@
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -83,9 +84,10 @@ celerybeat-schedule
 .env
 
 # virtualenv
-.venv
-venv/
-ENV/
+bin/
+include/
+lib/
+share/
 
 # Spyder project settings
 .spyderproject
