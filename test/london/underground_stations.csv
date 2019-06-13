@@ -1,0 +1,307 @@
+"id","latitude","longitude","name","display_name","zone","total_lines","rail"
+1,51.5028,-0.2801,"Acton Town","Acton<br />Town",3,2,0
+2,51.5143,-0.0755,"Aldgate",NULL,1,2,0
+3,51.5154,-0.0726,"Aldgate East","Aldgate<br />East",1,2,0
+4,51.5107,-0.013,"All Saints","All<br />Saints",2,1,0
+5,51.5407,-0.2997,"Alperton",NULL,4,1,0
+7,51.5322,-0.1058,"Angel",NULL,1,1,0
+8,51.5653,-0.1353,"Archway",NULL,2.5,1,0
+9,51.6164,-0.1331,"Arnos Grove","Arnos<br />Grove",4,1,0
+10,51.5586,-0.1059,"Arsenal",NULL,2,1,0
+11,51.5226,-0.1571,"Baker Street","Baker<br />Street",1,5,0
+12,51.4431,-0.1525,"Balham",NULL,3,1,1
+13,51.5133,-0.0886,"Bank",NULL,1,4,0
+14,51.5204,-0.0979,"Barbican",NULL,1,3,0
+15,51.5396,0.081,"Barking",NULL,4,2,1
+16,51.5856,0.0887,"Barkingside",NULL,5,1,0
+17,51.4905,-0.2139,"Barons Court","Barons<br />Court",2,2,0
+18,51.5121,-0.1879,"Bayswater",NULL,1,2,0
+19,51.5148,0.0613,"Beckton",NULL,3,1,0
+20,51.5087,0.055,"Beckton Park","Beckton<br />Park",3,1,0
+21,51.5403,0.127,"Becontree",NULL,5,1,0
+22,51.5504,-0.1642,"Belsize Park","Belsize<br />Park",2,1,0
+24,51.527,-0.0549,"Bethnal Green","Bethnal<br />Green",2,1,0
+25,51.512,-0.1031,"Blackfriars",NULL,1,2,0
+26,51.5867,-0.0417,"Blackhorse Road","Blackhorse<br />Road",3,1,1
+27,51.5079,-0.0066,"Blackwall",NULL,2,1,0
+28,51.5142,-0.1494,"Bond Street","Bond<br />Street",1,2,0
+29,51.5011,-0.0943,"Borough",NULL,1,1,0
+30,51.4956,-0.325,"Boston Manor","Boston<br />Manor",4,1,0
+31,51.6071,-0.1243,"Bounds Green","Bounds<br />Green",3.5,1,0
+32,51.5273,-0.0208,"Bow Church","Bow<br />Church",2,1,0
+33,51.5269,-0.0247,"Bow Road","Bow<br />Road",2,2,0
+34,51.5766,-0.2136,"Brent Cross","Brent<br />Cross",3,1,0
+36,51.5248,-0.0119,"Bromley-By-Bow",NULL,2.5,2,0
+38,51.6028,-0.2641,"Burnt Oak","Burnt<br />Oak",4,1,0
+39,51.5481,-0.1188,"Caledonian Road","Caledonian<br />Road",2,1,0
+40,51.5392,-0.1426,"Camden Town","Camden<br />Town",2,1,0
+42,51.5051,-0.0209,"Canary Wharf","Canary<br />Wharf",2,2,0
+44,51.5113,-0.0904,"Cannon Street","Cannon<br />Street",1,2,0
+45,51.6078,-0.2947,"Canons Park","Canons<br />Park",5,1,0
+47,51.5441,-0.1538,"Chalk Farm","Chalk<br />Farm",2,1,0
+48,51.5185,-0.1111,"Chancery Lane","Chancery<br />Lane",1,1,0
+49,51.508,-0.1247,"Charing Cross","Charing<br />Cross",1,2,1
+51,51.6177,0.0755,"Chigwell",NULL,5,1,0
+52,51.4946,-0.2678,"Chiswick Park","Chiswick<br />Park",3,1,0
+54,51.4618,-0.1384,"Clapham Common","Clapham<br />Common",2,1,0
+55,51.4649,-0.1299,"Clapham North","Clapham<br />North",2,1,0
+56,51.4527,-0.148,"Clapham South","Clapham<br />South",2.5,1,0
+58,51.5955,-0.2502,"Colindale",NULL,4,1,0
+59,51.418,-0.1778,"Colliers Wood","Colliers<br />Wood",3,1,0
+60,51.5129,-0.1243,"Covent Garden","Covent<br />Garden",1,1,0
+61,51.4957,-0.0144,"Crossharbour & London Arena","Crossharbour &<br />London Arena",2,1,0
+63,51.5095,0.0276,"Custom House","Custom<br />House",3,1,0
+65,51.5085,0.064,"Cyprus",NULL,3,1,0
+66,51.5443,0.1655,"Dagenham East","Dagenham<br />East",5,1,0
+67,51.5417,0.1469,"Dagenham Heathway","Dagenham<br />Heathway",5,1,0
+70,51.5223,-0.0173,"Devons Road","Devons<br />Road",2,1,0
+71,51.552,-0.2387,"Dollis Hill","Dollis<br />Hill",3,1,0
+72,51.5152,-0.3017,"Ealing Broadway","Ealing<br />Broadway",3,2,1
+73,51.5101,-0.2882,"Ealing Common","Ealing<br />Common",3,2,0
+74,51.492,-0.1973,"Earl's Court","Earl's<br />Court",1.5,2,0
+75,51.5765,-0.397,"Eastcote",NULL,5,2,0
+76,51.5168,-0.2474,"East Acton","East<br />Acton",2,1,0
+77,51.5874,-0.165,"East Finchley","East<br />Finchley",3,1,0
+78,51.5394,0.0518,"East Ham","East<br />Ham",3.5,2,0
+79,51.5093,-0.0021,"East India","East<br />India",2.5,1,0
+80,51.4586,-0.2112,"East Putney","East<br />Putney",2.5,1,0
+81,51.6137,-0.275,"Edgware",NULL,5,1,0
+82,51.5199,-0.1679,"Edgware Road (B)","Edgware<br />Road",1,1,0
+83,51.5203,-0.17,"Edgware Road (C)","Edgware<br />Road",1,3,0
+84,51.4943,-0.1001,"Elephant & Castle","Elephant &<br />Castle",1.5,2,1
+85,51.5496,0.1977,"Elm Park","Elm<br />Park",6,1,0
+87,51.5074,-0.1223,"Embankment",NULL,1,4,0
+89,51.5282,-0.1337,"Euston",NULL,1,2,1
+90,51.526,-0.1359,"Euston Square","Euston<br />Square",1,3,0
+91,51.596,0.0912,"Fairlop",NULL,5,1,0
+92,51.5203,-0.1053,"Farringdon",NULL,1,3,1
+93,51.6012,-0.1932,"Finchley Central","Finchley<br />Central",4,1,0
+94,51.5472,-0.1803,"Finchley Road","Finchley<br />Road",2,2,0
+95,51.5642,-0.1065,"Finsbury Park","Finsbury<br />Park",2,1,1
+96,51.4804,-0.195,"Fulham Broadway","Fulham<br />Broadway",2,1,0
+97,51.5096,0.0716,"Gallions Reach","Gallions<br />Reach",3,1,0
+98,51.5765,0.0663,"Gants Hill","Gants<br />Hill",4,1,0
+99,51.4945,-0.1829,"Gloucester Road","Gloucester<br />Road",1,3,0
+100,51.5724,-0.1941,"Golders Green","Golders<br />Green",3,1,0
+101,51.5018,-0.2267,"Goldhawk Road","Goldhawk<br />Road",2,1,0
+102,51.5205,-0.1347,"Goodge Street","Goodge<br />Street",1,1,0
+103,51.6132,0.0923,"Grange Hill","Grange<br />Hill",5,1,0
+104,51.5238,-0.1439,"Great Portland Street","Great<br />Portland<br />Street",1,3,0
+105,51.5423,-0.3456,"Greenford",NULL,4,1,1
+107,51.5067,-0.1428,"Green Park","Green<br />Park",1,3,0
+108,51.4915,-0.2754,"Gunnersbury",NULL,3,1,0
+109,51.603,0.0933,"Hainault",NULL,5,1,0
+110,51.4936,-0.2251,"Hammersmith",NULL,2,3,0
+111,51.5568,-0.178,"Hampstead",NULL,2.5,1,0
+112,51.5302,-0.2933,"Hanger Lane","Hanger<br />Lane",3,1,0
+113,51.5362,-0.2575,"Harlesden",NULL,3,1,0
+114,51.5925,-0.3351,"Harrow & Wealdston","Harrow &<br />Wealdston",5,1,1
+115,51.5793,-0.3366,"Harrow-on-the-Hill","Harrow-<br />on-the-Hill",5,1,1
+116,51.4669,-0.4227,"Hatton Cross","Hatton<br />Cross",5.5,1,0
+117,51.4713,-0.4524,"Heathrow Terminals 1, 2 & 3","Heathrow<br />Terminals<br />1, 2 & 3",6,1,0
+118,51.4598,-0.4476,"Heathrow Terminal 4","Heathrow<br />Terminal 4",6,1,0
+119,51.5829,-0.2259,"Hendon Central","Hendon<br />Central",3.5,1,0
+120,51.5033,-0.0215,"Heron Quays","Heron<br />Quays",2,1,0
+122,51.5009,-0.1925,"High Street Kensington","High<br />Street<br />Kensington",1,2,0
+123,51.546,-0.104,"Highbury & Islington","Highbury &<br />Islington",2,1,1
+124,51.5777,-0.1458,"Highgate",NULL,3,1,0
+125,51.5538,-0.4499,"Hillingdon",NULL,6,2,0
+126,51.5174,-0.12,"Holborn",NULL,1,2,0
+127,51.5075,-0.206,"Holland Park","Holland<br />Park",2,1,0
+128,51.5526,-0.1132,"Holloway Road","Holloway<br />Road",2,1,0
+129,51.5539,0.2184,"Hornchurch",NULL,6,1,0
+130,51.4713,-0.3665,"Hounslow Central","Hounslow<br />Central",4,1,0
+131,51.4733,-0.3564,"Hounslow East","Hounslow<br />East",4,1,0
+132,51.4734,-0.3855,"Hounslow West","Hounslow<br />West",5,1,0
+133,51.5027,-0.1527,"Hyde Park Corner","Hyde<br />Park<br />Corner",1,1,0
+134,51.5619,-0.4421,"Ickenham",NULL,6,2,0
+135,51.4871,-0.0101,"Island Gardens","Island<br />Gardens",2,1,0
+136,51.4884,-0.1053,"Kennington",NULL,2,1,0
+137,51.5304,-0.225,"Kensal Green","Kensal<br />Green",2,1,0
+138,51.4983,-0.2106,"Kensington (Olympia)","Kensington<br />(Olympia)",2,1,1
+139,51.5507,-0.1402,"Kentish Town","Kentish<br />Town",2,1,1
+140,51.5816,-0.3162,"Kenton",NULL,4,1,0
+141,51.477,-0.285,"Kew Gardens","Kew<br />Gardens",3.5,1,0
+142,51.5471,-0.2047,"Kilburn",NULL,2,1,0
+143,51.5351,-0.1939,"Kilburn Park","Kilburn<br />Park",2,1,0
+144,51.5846,-0.2786,"Kingsbury",NULL,4,1,0
+145,51.5308,-0.1238,"King's Cross St. Pancras","King's Cross<br />St. Pancras",1,6,1
+146,51.5015,-0.1607,"Knightsbridge",NULL,1,1,0
+147,51.5172,-0.2107,"Ladbroke Grove","Ladbroke<br />Grove",2,1,0
+148,51.4991,-0.1115,"Lambeth North","Lambeth<br />North",1,1,0
+149,51.5119,-0.1756,"Lancaster Gate","Lancaster<br />Gate",1,1,0
+150,51.5139,-0.2172,"Latimer Road","Latimer<br />Road",2,1,0
+151,51.5113,-0.1281,"Leicester Square","Leicester<br />Square",1,2,0
+153,51.5566,-0.0053,"Leyton",NULL,3,1,0
+154,51.5683,0.0083,"Leytonstone",NULL,3.5,1,0
+155,51.5123,-0.0396,"Limehouse",NULL,2,1,1
+156,51.5178,-0.0823,"Liverpool Street","Liverpool<br />Street",1,4,1
+157,51.5052,-0.0864,"London Bridge","London<br />Bridge",1,2,1
+159,51.53,-0.1854,"Maida Vale","Maida<br />Vale",2,1,0
+160,51.5712,-0.0958,"Manor House","Manor<br />House",2.5,1,0
+161,51.5122,-0.094,"Mansion House","Mansion<br />House",1,2,0
+162,51.5136,-0.1586,"Marble Arch","Marble<br />Arch",1,1,0
+163,51.5225,-0.1631,"Marylebone",NULL,1,1,1
+164,51.5249,-0.0332,"Mile End","Mile<br />End",2,3,0
+165,51.6082,-0.2103,"Mill Hill East","Mill<br />Hill<br />East",4,1,0
+166,51.5108,-0.0863,"Monument",NULL,1,2,0
+167,51.5186,-0.0886,"Moorgate",NULL,1,4,1
+168,51.6294,-0.432,"Moor Park","Moor<br />Park",6.5,1,0
+169,51.4022,-0.1948,"Morden",NULL,4,1,0
+170,51.5342,-0.1387,"Mornington Crescent","Mornington<br />Crescent",2,1,0
+171,51.4902,-0.0145,"Mudchute",NULL,2,1,0
+172,51.5542,-0.2503,"Neasden",NULL,3,1,0
+173,51.5756,0.0899,"Newbury Park","Newbury<br />Park",4,1,0
+176,51.4995,-0.3142,"Northfields",NULL,3,1,0
+177,51.5483,-0.3687,"Northolt",NULL,5,1,0
+178,51.5784,-0.3184,"Northwick Park","Northwick<br />Park",4,1,0
+179,51.6111,-0.424,"Northwood",NULL,6,1,0
+180,51.6004,-0.4092,"Northwood Hills","Northwood<br />Hills",6,1,0
+181,51.5237,-0.2597,"North Acton","North<br />Acton",2.5,1,0
+182,51.5175,-0.2887,"North Ealing","North<br />Ealing",3,1,0
+184,51.5846,-0.3626,"North Harrow","North<br />Harrow",5,1,0
+185,51.5621,-0.3034,"North Wembley","North<br />Wembley",4,1,0
+186,51.5094,-0.1967,"Notting Hill Gate","Notting<br />Hill Gate",1.5,3,0
+188,51.5263,-0.0873,"Old Street","Old<br />Street",1,1,1
+190,51.4813,-0.3522,"Osterley",NULL,4,1,0
+191,51.4819,-0.113,"Oval",NULL,2,1,0
+192,51.515,-0.1415,"Oxford Circus","Oxford<br />Circus",1,3,0
+193,51.5154,-0.1755,"Paddington",NULL,1,4,1
+194,51.527,-0.2841,"Park Royal","Park<br />Royal",3,1,0
+195,51.4753,-0.2011,"Parsons Green","Parsons<br />Green",2,1,0
+196,51.5366,-0.3232,"Perivale",NULL,4,1,0
+197,51.5098,-0.1342,"Piccadilly Circus","Piccadilly<br />Circus",1,2,0
+198,51.4893,-0.1334,"Pimlico",NULL,1,1,0
+199,51.5926,-0.3805,"Pinner",NULL,5,1,0
+200,51.5313,0.0172,"Plaistow",NULL,3,2,0
+201,51.5077,-0.0173,"Poplar",NULL,2,1,0
+202,51.572,-0.2954,"Preston Road","Preston<br />Road",4,1,0
+203,51.5093,0.0336,"Prince Regent","Prince<br />Regent",3,1,0
+205,51.4682,-0.2089,"Putney Bridge","Putney<br />Bridge",2,1,0
+206,51.5341,-0.2047,"Queen's Park","Queens<br />Park",2,1,1
+207,51.5942,-0.2861,"Queensbury",NULL,4,1,0
+208,51.5107,-0.1877,"Queensway",NULL,1,1,0
+209,51.4942,-0.2359,"Ravenscourt Park","Ravenscourt<br />Park",2,1,0
+210,51.5753,-0.3714,"Rayners Lane","Rayners<br />Lane",5,2,0
+211,51.5763,0.0454,"Redbridge",NULL,4,1,0
+212,51.5234,-0.1466,"Regent's Park","Regent's<br />Park",1,1,0
+213,51.4633,-0.3013,"Richmond",NULL,4,1,1
+215,51.6171,0.0439,"Roding Valley","Roding<br />Valley",5,1,0
+216,51.501,-0.0525,"Rotherhithe",NULL,2,1,0
+217,51.5084,0.0465,"Royal Albert","Royal<br />Albert",3,1,0
+218,51.519,-0.188,"Royal Oak","Royal<br />Oak",2,1,0
+219,51.5091,0.0181,"Royal Victoria","Royal<br />Victoria",3,1,0
+220,51.5715,-0.4213,"Ruislip",NULL,6,2,0
+222,51.5732,-0.4125,"Ruislip Manor","Ruislip<br />Manor",6,2,0
+223,51.523,-0.1244,"Russell Square","Russell<br />Square",1,1,0
+224,51.5822,-0.0749,"Seven Sisters","Seven<br />Sisters",3,1,1
+225,51.5117,-0.056,"Shadwell",NULL,2,2,0
+226,51.5046,-0.2187,"Shepherd's Bush (C)","Shepherd's<br />Bush",2,1,0
+227,51.5058,-0.2265,"Shepherd's Bush (H)","Shepherd's<br />Bush",2,1,0
+228,51.5227,-0.0708,"Shoreditch",NULL,2,1,0
+229,51.4924,-0.1565,"Sloane Square","Sloane<br />Square",1,2,0
+230,51.5808,0.0216,"Snaresbrook",NULL,4,1,0
+231,51.4454,-0.2066,"Southfields",NULL,3,1,0
+234,51.5011,-0.3072,"South Ealing","South<br />Ealing",3,1,0
+235,51.5646,-0.3521,"South Harrow","South<br />Harrow",5,1,0
+236,51.4941,-0.1738,"South Kensington","South<br />Kensington",1,3,0
+237,51.5701,-0.3081,"South Kenton","South<br />Kenton",4,1,0
+238,51.5007,-0.0191,"South Quay","South<br />Quay",2,1,0
+239,51.5569,-0.3988,"South Ruislip","South<br />Ruislip",5,1,1
+240,51.4154,-0.1919,"South Wimbledon","South<br />Wimbledon",3.5,1,0
+241,51.5917,0.0275,"South Woodford","South<br />Woodford",4,1,0
+242,51.495,-0.2459,"Stamford Brook","Stamford<br />Brook",2,1,0
+243,51.6194,-0.3028,"Stanmore",NULL,5,1,0
+244,51.5221,-0.047,"Stepney Green","Stepney<br />Green",2,2,0
+245,51.4723,-0.123,"Stockwell",NULL,2,2,0
+246,51.5439,-0.2759,"Stonebridge Park","Stonebridge<br />Park",3,1,0
+247,51.5416,-0.0042,"Stratford",NULL,3,3,1
+248,51.4994,-0.1335,"St. James's Park","St. James's<br />Park",1,2,0
+249,51.5347,-0.174,"St. John's Wood","St. John's<br />Wood",2,1,0
+250,51.5146,-0.0973,"St. Paul's","St. Paul's",1,1,0
+251,51.5569,-0.3366,"Sudbury Hill","Sudbury<br />Hill",4,1,0
+252,51.5507,-0.3156,"Sudbury Town","Sudbury<br />Town",4,1,0
+253,51.4933,-0.0478,"Surrey Quays","Surrey<br />Quays",2,1,0
+254,51.5432,-0.1738,"Swiss Cottage","Swiss<br />Cottage",2,2,0
+255,51.5111,-0.1141,"Temple",NULL,1,2,0
+257,51.4361,-0.1598,"Tooting Bec","Tooting<br />Bec",3,1,0
+258,51.4275,-0.168,"Tooting Broadway","Tooting<br />Broadway",3,1,0
+259,51.5165,-0.131,"Tottenham Court Road","Tottenham<br />Court<br />Road",1,2,0
+260,51.5882,-0.0594,"Tottenham Hale","Tottenham<br />Hale",3,1,1
+262,51.5106,-0.0743,"Tower Gateway","Tower<br />Gateway",1,1,0
+263,51.5098,-0.0766,"Tower Hill","Tower<br />Hill",1,2,0
+264,51.5567,-0.1374,"Tufnell Park","Tufnell<br />Park",2,1,0
+265,51.4951,-0.2547,"Turnham Green","Turnham<br />Green",2.5,2,0
+266,51.5904,-0.1028,"Turnpike Lane","Turnpike<br />Lane",3,1,0
+267,51.559,0.251,"Upminster",NULL,6,1,1
+268,51.5582,0.2343,"Upminster Bridge","Upminster<br />Bridge",6,1,0
+269,51.5385,0.1014,"Upney",NULL,4,1,0
+270,51.5352,0.0343,"Upton Park","Upton<br />Park",3,2,0
+271,51.5463,-0.4786,"Uxbridge",NULL,6,2,0
+272,51.4861,-0.1253,"Vauxhall",NULL,1.5,1,1
+273,51.4965,-0.1447,"Victoria",NULL,1,3,1
+274,51.583,-0.0195,"Walthamstow Central","Walthamstow<br />Central",3,1,1
+275,51.5775,0.0288,"Wanstead",NULL,4,1,0
+276,51.5043,-0.0558,"Wapping",NULL,2,1,0
+277,51.5247,-0.1384,"Warren Street","Warren<br />Street",1,2,0
+278,51.5235,-0.1835,"Warwick Avenue","Warwick<br />Avenue",2,1,0
+279,51.5036,-0.1143,"Waterloo",NULL,1,4,1
+281,51.5519,-0.2963,"Wembley Central","Wembley<br />Central",4,1,1
+282,51.5635,-0.2795,"Wembley Park","Wembley<br />Park",4,2,0
+283,51.521,-0.2011,"Westbourne Park","Westbourne<br />Park",2,1,0
+284,51.5097,-0.0265,"Westferry",NULL,2,1,0
+285,51.501,-0.1254,"Westminster",NULL,1,3,0
+286,51.518,-0.2809,"West Acton","West<br />Acton",3,1,0
+287,51.4872,-0.1953,"West Brompton","West<br />Brompton",2,1,1
+288,51.6095,-0.1883,"West Finchley","West<br />Finchley",4,1,0
+289,51.5287,0.0056,"West Ham","West<br />Ham",3,3,1
+290,51.5469,-0.1906,"West Hampstead","West<br />Hampstead",2,1,1
+291,51.5795,-0.3533,"West Harrow","West<br />Harrow",5,1,0
+292,51.507,-0.0203,"West India Quay","West<br />India<br />Quay",2,1,0
+293,51.4907,-0.2065,"West Kensington","West<br />Kensington",2,1,0
+294,51.5696,-0.4376,"West Ruislip","West<br />Ruislip",6,1,1
+295,51.5194,-0.0612,"Whitechapel",NULL,2,3,0
+296,51.512,-0.2239,"White City","White<br />City",2,1,0
+297,51.5492,-0.2215,"Willesden Green","Willesden<br />Green",2.5,1,0
+298,51.5326,-0.2478,"Willesden Junction","Willesden<br />Junction",3,1,1
+299,51.4214,-0.2064,"Wimbledon",NULL,3,1,1
+300,51.4343,-0.1992,"Wimbledon Park","Wimbledon<br />Park",3,1,0
+301,51.607,0.0341,"Woodford",NULL,4,1,0
+302,51.6179,-0.1856,"Woodside Park","Woodside<br />Park",4,1,0
+303,51.5975,-0.1097,"Wood Green","Wood<br />Green",3,1,0
+35,51.4627,-0.1145,"Brixton",NULL,2,1,1
+6,51.6736,-0.607,"Amersham",NULL,10,1,1
+23,51.4979,-0.0637,"Bermondsey",NULL,2,1,0
+50,51.7052,-0.611,"Chesham",NULL,10,1,0
+46,51.6679,-0.561,"Chalfont & Latimer","Chalfont &<br />Latimer",9,1,1
+53,51.6543,-0.5183,"Chorleywood",NULL,8,1,0
+214,51.6404,-0.4733,"Rickmansworth",NULL,7,1,0
+62,51.647,-0.4412,"Croxley",NULL,7,1,0
+280,51.6573,-0.4177,"Watford",NULL,8,1,0
+221,51.5606,-0.4103,"Ruislip Gardens","Ruislip<br />Gardens",5,1,0
+121,51.6503,-0.1943,"High Barnet","High<br />Barnet",5,1,0
+261,51.6302,-0.1791,"Totteridge & Whetstone","Totteridge<br />& Whetstone",4,1,0
+57,51.6517,-0.1496,"Cockfosters",NULL,5,1,0
+187,51.6476,-0.1318,"Oakwood",NULL,5,1,0
+232,51.6322,-0.128,"Southgate",NULL,4,1,0
+88,51.6937,0.1139,"Epping",NULL,6,1,0
+256,51.6717,0.1033,"Theydon Bois","Theydon<br />Bois",6,1,0
+68,51.6455,0.0838,"Debden",NULL,6,1,0
+158,51.6412,0.0558,"Loughton",NULL,6,1,0
+37,51.6266,0.0471,"Buckhurst Hill","Buckhurst<br />Hill",5,1,0
+204,51.5343,-0.0139,"Pudding Mill Lane","Pudding<br />Mill Lane",2.5,1,0
+233,51.504,-0.1052,"Southwark",NULL,1,1,0
+41,51.4982,-0.0502,"Canada Water","Canada<br />Water",2,2,0
+43,51.5147,0.0082,"Canning Town","Canning<br />Town",3,2,1
+183,51.5005,0.0039,"North Greenwich","North<br />Greenwich",2.5,1,0
+64,51.4827,-0.0096,"Cutty Sark","Cutty<br />Sark",2.5,1,0
+106,51.4781,-0.0149,"Greenwich",NULL,2.5,1,1
+69,51.474,-0.0216,"Deptford Bridge","Deptford<br />Bridge",2.5,1,0
+86,51.4693,-0.0174,"Elverson Road","Elverson<br />Road",2.5,1,0
+152,51.4657,-0.0142,"Lewisham",NULL,2.5,1,1
+174,51.4767,-0.0327,"New Cross","New<br />Cross",2,1,1
+175,51.4757,-0.0402,"New Cross Gate","New<br />Cross<br />Gate",2,1,1
+304,51.5027,0.0226,"West Silvertown","West<br />Silvertown",3,1,0
+307,51.502,0.0627,"King George V","King<br />George V",3,1,0
+305,51.5021,0.0319,"Pontoon Dock","Pontoon<br />Dock",3,1,0
+306,51.5037,0.0488,"London City Airport","London<br />City<br />Airport",3,1,0

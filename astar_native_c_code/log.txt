@@ -1,0 +1,72 @@
+python
+current <Charing Cross> 0.0004729391368639997
+    <Embankment>
+    add to openset
+    <Piccadilly Circus>
+    add to openset
+    <Embankment>
+   tentative_gscore >= neighbor.gscore
+    <Leicester Square>
+    add to openset
+current <Embankment> 0.00048448363583756355
+    <Charing Cross>
+    is closed
+    <Waterloo>
+    add to openset
+    <Temple>
+    add to openset
+    <Westminster>
+    add to openset
+    <Temple>
+   tentative_gscore >= neighbor.gscore
+    <Westminster>
+   tentative_gscore >= neighbor.gscore
+    <Charing Cross>
+    is closed
+    <Waterloo>
+   tentative_gscore >= neighbor.gscore
+current <Westminster> 0.0005043260682519811
+    <Embankment>
+    is closed
+    <St. James's Park>
+    add to openset
+    <Embankment>
+    is closed
+    <St. James's Park>
+   tentative_gscore >= neighbor.gscore
+    <Green Park>
+    add to openset
+    <Waterloo>
+   tentative_gscore >= neighbor.gscore
+current <Waterloo> 0.0005164202256984687
+    <Embankment>
+    is closed
+    <Lambeth North>
+    add to openset
+    <Southwark>
+    add to openset
+    <Westminster>
+    is closed
+    <Embankment>
+    is closed
+    <Kennington>
+    add to openset
+    <Bank>
+    add to openset
+current <Lambeth North> 0.0005222847821385149
+    <Elephant & Castle>
+    add to openset
+    <Waterloo>
+    is closed
+current <Kennington> 0.0005611349383695595
+    <Elephant & Castle>
+   tentative_gscore >= neighbor.gscore
+    <Oval>
+    add to openset
+    <Waterloo>
+    is closed
+current <Oval> 0.0005611349383695595
+----------
+
+
+
