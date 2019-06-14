@@ -20,117 +20,52 @@ void searchnode_free(searchnode_t *n) {
 
 searchnode_pq_t *searchnode_pq_new() {
 	searchnode_pq_t *pq = malloc(sizeof(searchnode_pq_t));
-	pq->lowest = pq->root = NULL;
+	pq->items = NULL;
+	pq->size = 0;
 	return pq;
 }
 
-static void pq_cell_free(pq_cell_t *cell) {
-	if(cell->right != NULL) {
-		pq_cell_free(cell->right);
-	}
-	if(cell->left != NULL) {
-		pq_cell_free(cell->left);
-	}
-}
-
 void searchnode_pq_free(searchnode_pq_t *pq) {
-	if(pq->root != NULL) {
-		pq_cell_free(pq->root);
+	if(pq->items != NULL) {
+		free(pq->items);
 	}
 	free(pq);
 }
 
 int searchnode_pq_has_len(searchnode_pq_t *pq) {
-	return pq->root != NULL;
+	return pq->size > 0;
+}
+
+int searchnode_pq_cmp(const void *a, const void* b) {
+    searchnode_t **pa = (searchnode_t**)a, **pb = (searchnode_t**)b;
+    float fa = (*pa)->fscore;
+    float fb = (*pb)->fscore;
+    if(fa == fb) {
+        return 0;
+    }
+    return fa > fb ? -1 : 1;
 }
 
 void searchnode_pq_push(searchnode_pq_t *pq, searchnode_t *item) {
-
-	//if empty
-	if(pq->root == NULL) {
-		//create first node
-		pq->root = malloc(sizeof(pq_cell_t));
-		pq->root->parent = NULL;
-		pq->root->left = NULL;
-		pq->root->right = NULL;
-		pq->root->data = item;
-		//the unique node is the lowest, by definition
-		pq->lowest = pq->root;
-		printf("inserted %p\n", pq->root);
-		return;
-	}
-
-	//insert a new node
-	pq_cell_t *inserted = malloc(sizeof(pq_cell_t));
-	inserted->parent = NULL;
-	inserted->left = NULL;
-	inserted->right = NULL;
-	inserted->data = item;
-
-	pq_cell_t *current = pq->root;
-	bool onlyleft = true, from_left = false;
-
-	while(current != NULL) {
-		inserted->parent = current;
-		//go to left if the inserted node is lower
-		if(item->fscore <= current->data->fscore) {
-			from_left = true;
-			current = current->left;
-		} else {
-			onlyleft = false;
-			from_left = false;
-			current = current->right;
-		}
-	}
-	
-	//we did go left all the way, so the inserted item is the lowest
-	if(onlyleft) {
-		pq->lowest = inserted;
-	}
-
-	//update link from parent node
-	if(from_left) {
-		inserted->parent->left = inserted;
+	pq->size += 1;
+	if(pq->items == NULL) {
+		pq->items = malloc(pq->size * sizeof(searchnode_t*));
 	} else {
-		inserted->parent->right = inserted;
+		pq->items = realloc(pq->items, pq->size * sizeof(searchnode_t *));
 	}
-	
-	printf("inserted %p inserted->left=%p inserted->right=%p parent=%p\n", inserted, inserted->left, inserted->right, inserted->parent);
-
+	pq->items[pq->size -1] = item;
 }
 
 searchnode_t *searchnode_pq_pop(searchnode_pq_t *pq) {
-
-	searchnode_t *popped = pq->lowest->data;
-
-	pq_cell_t *parent = NULL;
-	if((parent = pq->lowest->parent) != NULL) {
-		if(pq->lowest->right != NULL) {
-			pq->lowest->right->parent = parent;
-			if(pq->lowest->right->data->fscore <= parent->data->fscore) {
-				pq->lowest->right->parent = parent;
-				parent->left = pq->lowest->right;
-			} else {
-				parent->left = NULL;
-				pq->lowest->right->left = parent->right;
-				parent->right = pq->lowest->right;
-			}
-		}
+        qsort(pq->items, pq->size, sizeof(searchnode_t *), searchnode_pq_cmp);
+	pq->size -= 1;
+	searchnode_t *popped = pq->items[pq->size];
+        if(pq->size == 0) {
+                free(pq->items);
+		pq->items = NULL;
 	} else {
-		pq->root = pq->lowest->right;
+		pq->items = realloc(pq->items, pq->size * sizeof(searchnode_t*));
 	}
-
-	//erase the removed node
-	free(pq->lowest);
-	pq->lowest = NULL;
-
-	//recompute the new lowest
-	pq_cell_t *current = pq->root;
-	while(current != NULL) {
-		pq->lowest = current;
-		current = current->left;
-	}
-	
 	return popped;
 }
 
@@ -187,8 +122,6 @@ void searchnode_free_entry(void *key, void*value, void* opt) {
 	searchnode_free((searchnode_t*)value);
 }
 
-#include <Python.h>
-
 void astar_impl(astar_param_t* param, astar_result_t *result) {
 
 	// provide a dummy hash function if missing
@@ -222,21 +155,16 @@ void astar_impl(astar_param_t* param, astar_result_t *result) {
 
 	start_node->gscore = .0;
 	start_node->fscore = param->heuristic_cost_estimate_fn(param->invocation_ctx, start_node->data, goal_node->data);
-
 	searchnode_pq_push(openset, start_node);
+	start_node->out_openset = false;
 
 	//while openset is not empty
 	while(searchnode_pq_has_len(openset)) {
 
 		searchnode_t * current = searchnode_pq_pop(openset);
 
-		printf("current = ");
-		PyObject_Print((PyObject*)current->data, stdout, 0);
-		printf("  %f\n", current->fscore);
-
 		//test if the goal is reached
 		if(param->is_goal_reached_fn(param->invocation_ctx, current->data, goal_node->data)) {
-			printf("goal is reached\n");
 			astar_impl_feed_result(current, goal_node, param->reverse_path, result);
 			break;
 		}
@@ -247,9 +175,10 @@ void astar_impl(astar_param_t* param, astar_result_t *result) {
 		//for each neighbor of the current node
 		void *neighbor_data;
 		void *iterator = param->neighbors_fn(param->invocation_ctx, current->data);
+
 		while( (neighbor_data = param->iter_next_fn(param->invocation_ctx, iterator)) != NULL) {
 			
-			//find the node that correspond to the neighbor
+			//get the search node associated with the neighbor
 			long hash = param->hash_fn(neighbor_data);
 			searchnode_t * neighbor = rbtree_lookup(nodes, (void*)hash);
 			if(neighbor == NULL) {
@@ -257,22 +186,16 @@ void astar_impl(astar_param_t* param, astar_result_t *result) {
 				rbtree_insert(nodes, (void*)hash, neighbor);
 			}
 
-			printf("    neighbor = ");
-			PyObject_Print((PyObject*)neighbor->data, stdout, 0);
-			printf("\n");
-
 			if(neighbor->closed) {
-				printf("    is closed\n");
 				continue;
 			}
 
 			double tentative_g_score = current->gscore + param->distance_between_fn(param->invocation_ctx, current->data, neighbor->data);
 
 			if(tentative_g_score >= neighbor->gscore) {
-				printf("    tentative_g_score >= neighbor->gscore\n");
 				continue;
 			}
-
+			
 			neighbor->came_from = current;
 			neighbor->gscore = tentative_g_score;
 			neighbor->fscore = tentative_g_score + param->heuristic_cost_estimate_fn(param->invocation_ctx, neighbor->data, goal_node->data);
@@ -280,9 +203,7 @@ void astar_impl(astar_param_t* param, astar_result_t *result) {
 			if(neighbor->out_openset) {
 				neighbor->out_openset = false;
 				searchnode_pq_push(openset, neighbor);
-				printf("    add to openset\n");
 			}
-
 		}
 
 		//dealloc the iterator

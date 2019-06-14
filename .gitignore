@@ -95,3 +95,7 @@ share/
 # Rope project settings
 .ropeproject
 
+# Compiled files
+astar_native_c_code/*.o
+
+

@@ -3,7 +3,7 @@ CC=gcc
 CCFLAGS=-I. -I /usr/include/python3.6 -O0 -ggdb -Wfatal-errors
 LDFLAGS=-lpthread -lpython3.6m
 
-all: map_test
+all: test_main
 
 .PHONY: clean
 
@@ -17,5 +17,5 @@ test: map_test
 	@gdb -quiet -x gdbinit $<
 
 clean:
-	rm *.o
+	@rm -f *.o
 

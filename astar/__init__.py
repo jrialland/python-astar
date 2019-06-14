@@ -100,40 +100,36 @@ class AStar_Py:
 
         openSet = []
         heappush(openSet, startNode)
+
         while openSet:
 
             current = heappop(openSet)
-            print("current " + str(current.data), current.fscore);
 
             if self.is_goal_reached(current.data, goal):
-                print("goal is reached");
                 return self.reconstruct_path(current, reversePath)
 
             current.out_openset = True
             current.closed = True
 
             for neighbor in [searchNodes[n] for n in self.neighbors(current.data)]:
-                print("    " + str(neighbor.data))
+
                 if neighbor.closed:
-                    print("    is closed")
                     continue
 
                 tentative_gscore = current.gscore + \
                     self.distance_between(current.data, neighbor.data)
                 
                 if tentative_gscore >= neighbor.gscore:
-                    print("   tentative_gscore >= neighbor.gscore") 
                     continue
-
+		
                 neighbor.came_from = current
                 neighbor.gscore = tentative_gscore
                 neighbor.fscore = tentative_gscore + \
-                    self.heuristic_cost_estimate(neighbor.data, goal)
+                self.heuristic_cost_estimate(neighbor.data, goal)
 
                 if neighbor.out_openset:
                     neighbor.out_openset = False
-                    heappush(openSet, neighbor) 
-                    print("    add to openset")
+                    heappush(openSet, neighbor)
         return None
 
 
@@ -191,7 +187,14 @@ try:
             )
             return astar_native.astar(param)
 
-    def find_path_Native(start, goal, neighbors_fnct, reversePath=False, heuristic_cost_estimate_fnct=lambda a, b: Infinite, distance_between_fnct=lambda a, b: 1.0, is_goal_reached_fnct=lambda a, b: a == b):
+    def find_path_Native(
+        start,
+        goal,
+        neighbors_fnct,
+        reversePath=False,
+        heuristic_cost_estimate_fnct=lambda a, b: Infinite,
+        distance_between_fnct=lambda a, b: 1.0, is_goal_reached_fnct=lambda a, b: a == b
+    ):
         param = Astar_Native_Param(
                 start,
                 goal,

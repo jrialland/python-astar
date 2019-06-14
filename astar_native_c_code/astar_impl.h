@@ -18,20 +18,13 @@ typedef struct _searchnode {
 	bool out_openset;
 } searchnode_t;
 
-typedef struct _pq_cell {
-	struct _pq_cell *left;
-	struct _pq_cell *right;
-	struct _pq_cell *parent;
-	searchnode_t *data;
-} pq_cell_t;
-
-typedef struct _searchnode_pq {
-	pq_cell_t *root;
-	pq_cell_t *lowest;
-}searchnode_pq_t;
-
 searchnode_t *searchnode_new(void *data);
 void searchnode_free(searchnode_t *n);
+
+typedef struct _searchnode_pq {
+	searchnode_t **items;
+	size_t size;
+}searchnode_pq_t;
 
 searchnode_pq_t *searchnode_pq_new();
 
