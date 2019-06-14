@@ -1,10 +1,9 @@
 import unittest
 import astar
 
-
 class BasicTests(unittest.TestCase):
 
-    def test_bestpath(self):
+    def runTest(self):
         """ensure that we take the shortest path, and not the path with less elements.
            the path with less elements is A -> B with a distance of 100
            the shortest path is A -> C -> D -> B with a distance of 60
@@ -25,7 +24,6 @@ class BasicTests(unittest.TestCase):
             return 1
         path = list(astar.find_path('A', 'B', neighbors_fnct=neighbors,
                     heuristic_cost_estimate_fnct=cost, distance_between_fnct=distance))
-        print(path)
         self.assertEqual(4, len(path))
         for i, n in enumerate('ACDB'):
             self.assertEqual(n, path[i])

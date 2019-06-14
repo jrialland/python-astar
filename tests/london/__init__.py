@@ -16,11 +16,11 @@ class Station:
     def __repr__(self):
         return '<' + self.name + '>'
 
-def build_data():
+def build_data(cwd = ''):
     """builds the 'map' by reading the data files"""
     stations = {}
     rootdir = os.path.dirname(os.path.abspath(sys.argv[0]))
-    r = csv.reader(open(os.path.join(rootdir, 'underground_stations.csv')))
+    r = csv.reader(open(os.path.join(rootdir, cwd, 'underground_stations.csv')))
     next(r)  # jump the first line
     for record in r:
         id = int(record[0])
@@ -29,7 +29,7 @@ def build_data():
         name = record[3]
         stations[id] = Station(id, name, (lat, lon))
 
-    r = csv.reader(open(os.path.join(rootdir, 'underground_routes.csv')))
+    r = csv.reader(open(os.path.join(rootdir, cwd, 'underground_routes.csv')))
     next(r)  # jump the first line
     for id1, id2, lineNumber in r:
         id1 = int(id1)
@@ -66,6 +66,14 @@ def get_path(s1, s2):
         return math.hypot(x, y)
 
     return astar.find_path(s1, s2, neighbors_fnct=lambda s: s.links, heuristic_cost_estimate_fnct=distance, distance_between_fnct=distance)
+
+
+import unittest
+class LondonTests(unittest.TestCase):
+    def runTest(self):
+        stations = build_data(cwd = 'london/')
+        get_path(get_station_by_name(stations, "Chesham"), get_station_by_name(stations, "Beckton"))
+        get_path(get_station_by_name(stations, "Edgware"), get_station_by_name(stations, "New Addington"))
 
 
 if __name__ == '__main__':

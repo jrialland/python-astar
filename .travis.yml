@@ -16,7 +16,5 @@ install:
 script:
   - python setup.py build
   - python setup.py install
-  - python setup.py nosetests --with-coverage --cover-package astar
+  - python setup.py test
 
-after_sucess:
-  coveralls

@@ -1,7 +1,25 @@
 #!/usr/bin/env python
-import sys
+
+from distutils.cmd import Command
 from distutils.core import setup, Extension
 from glob import glob
+
+
+class TestCommand(Command):
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        import sys, subprocess
+        raise SystemExit(
+            subprocess.call([sys.executable,
+                             '-m',
+                             'tests']))
 
 import astar
 
@@ -18,6 +36,7 @@ setup(
     long_description='Provides path finding using A-*',
     license=astar.__license__,
     package_dir={'astar': 'astar'},
+    cmdclass = {'test' : TestCommand},
     ext_modules = [
         Extension(
             'astar_native',
