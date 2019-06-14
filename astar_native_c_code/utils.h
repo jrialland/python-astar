@@ -16,6 +16,14 @@
 #include <pthread.h>
 #include <signal.h>
 
+#ifndef u_char
+#define u_char unsigned char
+#endif
+
+#ifndef u_int
+#define u_int unsigned int
+#endif
+
 /* True/False definitions */
 #ifndef FALSE
 #define FALSE 0
@@ -370,7 +378,6 @@ static inline m_tmcnt_t m_gettime_adj(void)
 
 #if defined(__CYGWIN__) || defined(SUNOS)
    gmt_adjust = -(tmx.tm_isdst ? GET_TIMEZONE - 3600 : GET_TIMEZONE);
-#else
    gmt_adjust = tmx.tm_gmtoff;
 #endif
 

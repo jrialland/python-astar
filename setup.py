@@ -18,7 +18,13 @@ setup(
     long_description='Provides path finding using A-*',
     license=astar.__license__,
     package_dir={'astar': 'astar'},
-    ext_modules = [Extension('astar_native', sources = glob('astar_native_c_code/*.c'))],
+    ext_modules = [
+        Extension(
+            'astar_native',
+            sources = glob('astar_native_c_code/*.c'),
+            extra_compile_args = ['-std=c99', '-O3', '-DNDEBUG']
+        )
+    ],
     keywords=['a-star', 'search', 'path finding'],
     platforms=['any'],
     classifiers=[

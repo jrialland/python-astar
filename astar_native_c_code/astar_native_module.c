@@ -99,7 +99,8 @@ static PyObject* astar(PyObject *self, PyObject *args) {
 	astar_impl(&call_params, &astar_result);
 	
 	PyObject * lReturned = PyList_New(astar_result.size);
-	for(size_t i=0; i < astar_result.size; i++) {
+	size_t i;
+	for(i=0; i < astar_result.size; i++) {
 		PyList_SetItem(lReturned, i, astar_result.path[i]);	
 	};
 

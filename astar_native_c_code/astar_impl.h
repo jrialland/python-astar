@@ -26,7 +26,7 @@ typedef struct _searchnode_pq {
 	size_t size;
 }searchnode_pq_t;
 
-searchnode_pq_t *searchnode_pq_new();
+searchnode_pq_t *searchnode_pq_new(void);
 
 void searchnode_pq_free(searchnode_pq_t *pq);
 int searchnode_pq_has_len(searchnode_pq_t *pq); 

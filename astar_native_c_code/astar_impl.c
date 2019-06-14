@@ -18,7 +18,7 @@ void searchnode_free(searchnode_t *n) {
 	free(n);
 }
 
-searchnode_pq_t *searchnode_pq_new() {
+searchnode_pq_t *searchnode_pq_new(void) {
 	searchnode_pq_t *pq = malloc(sizeof(searchnode_pq_t));
 	pq->items = NULL;
 	pq->size = 0;
