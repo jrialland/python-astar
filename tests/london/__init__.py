@@ -16,11 +16,10 @@ class Station:
     def __repr__(self):
         return '<' + self.name + '>'
 
-def build_data(cwd = ''):
+def build_data(cwd = os.path.dirname(__file__)):
     """builds the 'map' by reading the data files"""
     stations = {}
-    rootdir = os.path.dirname(os.path.abspath(sys.argv[0]))
-    r = csv.reader(open(os.path.join(rootdir, cwd, 'underground_stations.csv')))
+    r = csv.reader(open(os.path.join(cwd, 'underground_stations.csv')))
     next(r)  # jump the first line
     for record in r:
         id = int(record[0])
@@ -29,7 +28,7 @@ def build_data(cwd = ''):
         name = record[3]
         stations[id] = Station(id, name, (lat, lon))
 
-    r = csv.reader(open(os.path.join(rootdir, cwd, 'underground_routes.csv')))
+    r = csv.reader(open(os.path.join(cwd, 'underground_routes.csv')))
     next(r)  # jump the first line
     for id1, id2, lineNumber in r:
         id1 = int(id1)
@@ -38,8 +37,9 @@ def build_data(cwd = ''):
         stations[id2].links.append(stations[id1])
     return stations
 
+stations = build_data()
 
-def get_station_by_name(stations, name):
+def get_station_by_name(name):
     """lookup by name, the name does not have to be exact."""
     name = name.lower()
     ratios = [(SequenceMatcher(None, name, v.name.lower()).ratio(), v)
@@ -71,9 +71,8 @@ def get_path(s1, s2):
 import unittest
 class LondonTests(unittest.TestCase):
     def runTest(self):
-        stations = build_data(cwd = 'london/')
-        get_path(get_station_by_name(stations, "Chesham"), get_station_by_name(stations, "Beckton"))
-        get_path(get_station_by_name(stations, "Edgware"), get_station_by_name(stations, "New Addington"))
+        get_path(get_station_by_name("Chesham"), get_station_by_name("Beckton"))
+        get_path(get_station_by_name("Edgware"), get_station_by_name("New Addington"))
 
 
 if __name__ == '__main__':
@@ -83,11 +82,9 @@ if __name__ == '__main__':
             'Usage : {script} <station1> <station2>'.format(script=sys.argv[0]))
         sys.exit(1)
 
-    stations = build_data()
-
-    station1 = get_station_by_name(stations, sys.argv[1])
+    station1 = get_station_by_name(sys.argv[1])
     print('Station 1 : ' + station1.name)
-    station2 = get_station_by_name(stations, sys.argv[2])
+    station2 = get_station_by_name(sys.argv[2])
     print('Station 2 : ' + station2.name)
     print('-' * 80)
     path = get_path(station1, station2)
