@@ -40,8 +40,8 @@ setup(
     ext_modules = [
         Extension(
             'astar_native',
-            sources = glob('astar_native_c_code/*.c'),
-            extra_compile_args = ['-std=c99', '-O3', '-DNDEBUG']
+            sources = [f for f in glob('astar_native_c_code/*.c') if not 'main' in f],
+            extra_compile_args = ['-std=c99']
         )
     ],
     keywords=['a-star', 'search', 'path finding'],

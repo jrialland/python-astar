@@ -6,21 +6,10 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <errno.h>
-#include <signal.h>
-#include <fcntl.h>
-#include <ctype.h>
-#include <time.h>
-#include <sys/time.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include <assert.h>
-
-#include "utils.h"
 #include "mempool.h"
 
 /* 
@@ -100,13 +89,13 @@ static inline void *mp_alloc_inline(mempool_t *pool,size_t size,int zeroed)
 /* Allocate a new block in specified pool */
 void *mp_alloc(mempool_t *pool,size_t size)
 {
-   return(mp_alloc_inline(pool,size,TRUE));
+   return(mp_alloc_inline(pool,size, true));
 }
 
 /* Allocate a new block which will not be zeroed */
 void *mp_alloc_n0(mempool_t *pool,size_t size)
 {
-   return(mp_alloc_inline(pool,size,FALSE));
+   return(mp_alloc_inline(pool,size, false));
 }
 
 /* Reallocate a block */

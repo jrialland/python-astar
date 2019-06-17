@@ -7,6 +7,7 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
@@ -140,7 +141,7 @@ static rbtree_node *rbtree_insert_new(rbtree_tree *tree,void *key,void *value,
 
    nodeplace = &tree->root;
    parent = NULL;
-   *exists = FALSE;
+   *exists = false;
    
    for(;;) 
    {
@@ -152,7 +153,7 @@ static rbtree_node *rbtree_insert_new(rbtree_tree *tree,void *key,void *value,
       comp = tree->key_cmp(key,node->key,tree->opt_data);
 
       if (!comp) {
-         *exists = TRUE;
+         *exists = true;
          node->value = value;
          return node;
       }
@@ -422,7 +423,7 @@ static int rbtree_height_node(rbtree_tree *tree,rbtree_node *node)
 
    lh = (!NIL(tree,node->left)) ? rbtree_height_node(tree,node->left) : 0;
    rh = (!NIL(tree,node->right)) ? rbtree_height_node(tree,node->right) : 0;
-   return(1 + m_max(lh,rh));
+   return(1 + (lh > rh ? lh : rh));
 }
 
 /* Compute the height of a Red/Black tree */

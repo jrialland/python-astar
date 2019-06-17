@@ -8,11 +8,10 @@
 #ifndef __MEMPOOL_H__
 #define __MEMPOOL_H__  1
 
+#include <stdint.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <pthread.h>
-
-#include "utils.h"
 
 /* Memory Pool "Fixed" Flag */
 #define MEMPOOL_FIXED  1
@@ -29,7 +28,7 @@ struct memblock {
    size_t block_size;        /* Block size (without header) */
    memblock_t *next,*prev;   /* Double linked list pointers */
    mempool_t *pool;          /* Pool which contains this block */
-   m_uint64_t data[0];       /* Memory block itself */
+   uint64_t data[0];       /* Memory block itself */
 };
 
 /* Memory Pool */

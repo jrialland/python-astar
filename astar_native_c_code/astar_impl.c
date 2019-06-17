@@ -2,6 +2,18 @@
 #include <math.h>
 #include "astar_impl.h"
 #include "rbtree.h"
+#include "priorityqueue.h"
+
+#define ASTAR_ALLOC_INCREMENT 1
+
+typedef struct _searchnode {
+	void *data;
+	struct _searchnode *came_from;
+	double gscore;
+	double fscore;
+	bool closed;
+	bool out_openset;
+} searchnode_t;
 
 searchnode_t *searchnode_new(void *data) {
     searchnode_t *n = malloc(sizeof(searchnode_t));
@@ -18,57 +30,13 @@ void searchnode_free(searchnode_t *n) {
 	free(n);
 }
 
-searchnode_pq_t *searchnode_pq_new(void) {
-	searchnode_pq_t *pq = malloc(sizeof(searchnode_pq_t));
-	pq->items = NULL;
-	pq->size = 0;
-	return pq;
-}
-
-void searchnode_pq_free(searchnode_pq_t *pq) {
-	if(pq->items != NULL) {
-		free(pq->items);
-	}
-	free(pq);
-}
-
-int searchnode_pq_has_len(searchnode_pq_t *pq) {
-	return pq->size > 0;
-}
-
 int searchnode_pq_cmp(const void *a, const void* b) {
-    searchnode_t **pa = (searchnode_t**)a, **pb = (searchnode_t**)b;
-    float fa = (*pa)->fscore;
-    float fb = (*pb)->fscore;
-    if(fa == fb) {
-        return 0;
-    }
-    return fa > fb ? -1 : 1;
+    float fa = (*(searchnode_t **)a)->fscore;
+    float fb = (*(searchnode_t **)b)->fscore;
+    int result = fa == fb ? 0 : ( fa < fb ? -1 : 1);
+    printf("%f %f %d\n", fa, fb, result);
+    return result;
 }
-
-void searchnode_pq_push(searchnode_pq_t *pq, searchnode_t *item) {
-	pq->size += 1;
-	if(pq->items == NULL) {
-		pq->items = malloc(pq->size * sizeof(searchnode_t*));
-	} else {
-		pq->items = realloc(pq->items, pq->size * sizeof(searchnode_t *));
-	}
-	pq->items[pq->size -1] = item;
-}
-
-searchnode_t *searchnode_pq_pop(searchnode_pq_t *pq) {
-        qsort(pq->items, pq->size, sizeof(searchnode_t *), searchnode_pq_cmp);
-	pq->size -= 1;
-	searchnode_t *popped = pq->items[pq->size];
-        if(pq->size == 0) {
-                free(pq->items);
-		pq->items = NULL;
-	} else {
-		pq->items = realloc(pq->items, pq->size * sizeof(searchnode_t*));
-	}
-	return popped;
-}
-
 
 static void 
 astar_impl_feed_result(
@@ -151,17 +119,17 @@ void astar_impl(astar_param_t* param, astar_result_t *result) {
 	rbtree_insert(nodes, (void*)param->hash_fn(goal_node->data), goal_node);
 
 	//create the priority queue
-	searchnode_pq_t *openset = searchnode_pq_new();
+	pq_t *openset = pq_new(searchnode_pq_cmp);
 
 	start_node->gscore = .0;
 	start_node->fscore = param->heuristic_cost_estimate_fn(param->invocation_ctx, start_node->data, goal_node->data);
-	searchnode_pq_push(openset, start_node);
+	pq_push(openset, start_node);
 	start_node->out_openset = false;
 
 	//while openset is not empty
-	while(searchnode_pq_has_len(openset)) {
-
-		searchnode_t * current = searchnode_pq_pop(openset);
+	while(pq_has_len(openset)) {
+		
+		searchnode_t * current = pq_pop(openset);
 
 		//test if the goal is reached
 		if(param->is_goal_reached_fn(param->invocation_ctx, current->data, goal_node->data)) {
@@ -202,7 +170,7 @@ void astar_impl(astar_param_t* param, astar_result_t *result) {
 
 			if(neighbor->out_openset) {
 				neighbor->out_openset = false;
-				searchnode_pq_push(openset, neighbor);
+				pq_push(openset, neighbor);
 			}
 		}
 
@@ -215,6 +183,6 @@ void astar_impl(astar_param_t* param, astar_result_t *result) {
 	rbtree_delete(nodes);
 
 	//dealloc the priority queue
-	searchnode_pq_free(openset);
+	pq_free(openset);
 }
 
