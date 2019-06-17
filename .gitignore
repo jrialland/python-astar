@@ -97,5 +97,6 @@ share/
 
 # Compiled files
 astar_native_c_code/*.o
+astar_native_c_code/test_main
 
 
