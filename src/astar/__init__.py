@@ -89,7 +89,7 @@ class AStar:
                 return self.reconstruct_path(current, reversePath)
             current.out_openset = True
             current.closed = True
-            for neighbor in [searchNodes[n] for n in self.neighbors(current.data)]:
+            for neighbor in map(lambda n:searchNodes[n], self.neighbors(current.data)):
                 if neighbor.closed:
                     continue
                 tentative_gscore = current.gscore + \
