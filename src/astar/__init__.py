@@ -2,7 +2,7 @@
 """ generic A-Star path searching algorithm """
 
 from abc import ABCMeta, abstractmethod
-from heapq import heappush, heappop
+from heapq import heappush, heappop, heapify
 
 __author__ = "Julien Rialland"
 __copyright__ = "Copyright 2012-2017, J.Rialland"
@@ -89,7 +89,7 @@ class AStar:
                 return self.reconstruct_path(current, reversePath)
             current.out_openset = True
             current.closed = True
-            for neighbor in map(lambda n:searchNodes[n], self.neighbors(current.data)):
+            for neighbor in map(lambda n: searchNodes[n], self.neighbors(current.data)):
                 if neighbor.closed:
                     continue
                 tentative_gscore = current.gscore + \
@@ -103,6 +103,8 @@ class AStar:
                 if neighbor.out_openset:
                     neighbor.out_openset = False
                     heappush(openSet, neighbor)
+                else:
+                    heapify(openSet)
         return None
 
 
