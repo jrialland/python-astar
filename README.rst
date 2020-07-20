@@ -1,13 +1,15 @@
-.. |pypi| image:: https://badge.fury.io/py/astar.svg
+.. image:: https://badge.fury.io/py/astar.svg
     :target: https://badge.fury.io/py/astar
-.. image:: https://img.shields.io/github/stars/jrialland/python-astar    
-.. image:: https://img.shields.io/github/forks/jrialland/python-astar
 
-.. |build status| image:: https://travis-ci.org/jrialland/python-astar.svg?branch=master
+.. image:: https://travis-ci.org/jrialland/python-astar.svg?branch=master
     :target: https://travis-ci.org/jrialland/python-astar
     
-.. |coverage| image:: https://coveralls.io/repos/github/jrialland/python-astar/badge.svg?branch=master
+.. image:: https://coveralls.io/repos/github/jrialland/python-astar/badge.svg?branch=master
     :target: https://coveralls.io/github/jrialland/python-astar?branch=master
+
+.. image:: https://img.shields.io/github/stars/jrialland/python-astar
+
+.. image:: https://img.shields.io/github/forks/jrialland/python-astar
 
 python-astar
 ============
