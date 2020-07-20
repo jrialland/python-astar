@@ -8,8 +8,10 @@
     :target: https://coveralls.io/github/jrialland/python-astar?branch=master
 
 .. image:: https://img.shields.io/github/stars/jrialland/python-astar
-
+    :target: https://github.com/jrialland/python-astar
+    
 .. image:: https://img.shields.io/github/forks/jrialland/python-astar
+    :target: https://github.com/jrialland/python-astar
 
 python-astar
 ============
