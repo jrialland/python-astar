@@ -3,6 +3,9 @@
     
 .. image:: https://travis-ci.org/jrialland/python-astar.svg?branch=master
     :target: https://travis-ci.org/jrialland/python-astar
+    
+.. image:: https://coveralls.io/repos/github/jrialland/python-astar/badge.svg?branch=master
+    :target: https://coveralls.io/github/jrialland/python-astar?branch=master
 
 python-astar
 ============
