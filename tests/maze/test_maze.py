@@ -3,6 +3,7 @@ from astar import AStar
 import sys
 import math
 
+import unittest
 
 def make_maze(w=30, h=30):
     """returns an ascii maze as a string"""
@@ -81,19 +82,27 @@ class MazeSolver(AStar):
         x, y = node
         return[(nx, ny) for nx, ny in[(x, y - 1), (x, y + 1), (x - 1, y), (x + 1, y)]if 0 <= nx < self.width and 0 <= ny < self.height and self.lines[ny][nx] == ' ']
 
-# generate an ascii maze
-size = 20
-m = make_maze(size, size)
+def solve_maze():
+	# generate an ascii maze
+	size = 20
+	m = make_maze(size, size)
 
-# what is the size of it?
-w = len(m.split('\n')[0])
-h = len(m.split('\n'))
+	# what is the size of it?
+	w = len(m.split('\n')[0])
+	h = len(m.split('\n'))
 
-start = (1, 1)  # we choose to start at the upper left corner
-goal = (w - 2, h - 2)  # we want to reach the lower right corner
+	start = (1, 1)  # we choose to start at the upper left corner
+	goal = (w - 2, h - 2)  # we want to reach the lower right corner
 
-# let's solve it
-foundPath = list(MazeSolver(m).astar(start, goal))
+	# let's solve it
+	foundPath = list(MazeSolver(m).astar(start, goal))
 
-# print the solution
-print(drawmaze(m, list(foundPath)))
+	return drawmaze(m, list(foundPath))
+
+class MazeTests(unittest.TestCase):
+	def test_solve_maze(self):
+		solve_maze()
+
+if __name__ == '__main__':
+	print(solve_maze())
+

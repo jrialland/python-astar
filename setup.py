@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 import sys
 from setuptools import setup, find_packages
-
-if not './src' in sys.path:
-    sys.path.append('./src')
 import astar
 
 setup(
@@ -18,7 +15,7 @@ setup(
     long_description='Provides path finding using A-*',
     zip_safe=True,
     license=astar.__license__,
-    package_dir={'astar': 'src/astar'},
+    package_dir={'astar': 'astar'},
     packages=['astar'],
     include_package_data=True,
     keywords=['a-star', 'search', 'path finding'],

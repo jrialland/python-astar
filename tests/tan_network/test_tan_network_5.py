@@ -64,9 +64,9 @@ def solve_tan(in_stream):
 
 class TanFinderTest(unittest.TestCase):
 
-    def test_solveTan(self):
+    def test_solve_tan(self):
         self.maxDiff = None
-        rootdir = os.path.dirname(os.path.abspath(sys.argv[0]))
+        rootdir = os.path.dirname(__file__)
         with open(os.path.join(rootdir, 'tan_network_5.in.txt')) as inputFile:
             with open(os.path.join(rootdir, 'tan_network_5.out.txt')) as outputFile:
                 output_data = outputFile.read()
