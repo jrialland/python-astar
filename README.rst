@@ -27,7 +27,7 @@ The astar module defines the AStar class, which has to be inherited from
 and completed with the implementation of several methods :
 
 neighbors
----------
+~~~~~~~~~
 
 .. code:: py
 
@@ -43,7 +43,7 @@ algorithm the description of the graph to use during for computation
 This method must be implemented in a subclass.
 
 distance\_between
------------------
+~~~~~~~~~~~~~~~~~
 
 .. code:: py
 
@@ -57,7 +57,7 @@ the list returned by a call to neighbors(n1).
 This method must be implemented in a subclass.
 
 heuristic\_cost\_estimate
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: py
 
@@ -74,7 +74,7 @@ may try next during search.
 This method must be implemented in a subclass.
 
 is\_goal\_reached
------------------
+~~~~~~~~~~~~~~~~~
 
 .. code:: py
 
@@ -84,12 +84,15 @@ is\_goal\_reached
 This method shall return a truthy value when the goal is 'reached'. By
 default it checks that current == goal.
 
-Example
-~~~~~~~
+Examples
+--------
 
-The maze solver example is executed by running
+Maze solver
+~~~~~~~~~~~
 
-``PYTHONPATH=./src python ./src/test/maze.py``
+This script generates an ascii maze, and finds the path between the upper left corner and the bottom right
+
+``PYTHONPATH=. python tests/maze/test_maze.py``
 
 ::
 
@@ -134,3 +137,69 @@ The maze solver example is executed by running
     +  +--+  +--+  +--+--+  +  +  +  +--+--+--+--+--+--+  +--+ #+
     |           |              |  |                            #|
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    
+   
+London Underground
+~~~~~~~~~~~~~~~~~~
+
+This script finds the shortest path between two underground stations, based on a list of London's stations
+
+``PYTHONPATH=. python tests/london/test_london_underground.py Chesham Beckton``
+
+::
+
+    Chesham
+    Chalfont & Latimer
+    Chorleywood
+    Rickmansworth
+    Moor Park
+    Northwood
+    Northwood Hills
+    Pinner
+    North Harrow
+    Harrow-on-the-Hill
+    Northwick Park
+    Preston Road
+    Wembley Park
+    Finchley Road
+    Baker Street
+    Bond Street
+    Oxford Circus
+    Tottenham Court Road
+    Holborn
+    Chancery Lane
+    St. Paul's
+    Bank
+    Shadwell
+    Limehouse
+    Westferry
+    Poplar
+    Blackwall
+    East India
+    Canning Town
+    Royal Victoria
+    Custom House
+    Prince Regent
+    Royal Albert
+    Beckton Park
+    Cyprus
+    Gallions Reach
+    Beckton
+
+
+TAN Network
+~~~~~~~~~~~
+
+A solution for a codingame's puzzle (https://www.codingame.com/training/hard/tan-network)
+
+``PYTHONPATH=. python tests/tan_network/test_tan_network_5.py``
+
+.. code:: sh
+
+    .
+    ----------------------------------------------------------------------
+    Ran 1 test in 0.010s
+
+    OK
+
+
