@@ -7,7 +7,7 @@ from heapq import heappush, heappop, heapify
 __author__ = "Julien Rialland"
 __copyright__ = "Copyright 2012-2017, J.Rialland"
 __license__ = "BSD"
-__version__ = "0.92"
+__version__ = "0.93"
 __maintainer__ = __author__
 __email__ = ''.join(map(chr, [106, 117, 108, 105, 101, 110, 46, 114, 105,
                               97, 108, 108, 97, 110, 100, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109]))
