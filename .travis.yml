@@ -5,14 +5,12 @@ python:
   - 3.8
   - nightly
   - pypy3
-install: 
-  - pip install .
-  - pip install nose coverage
-  - pip install coveralls
+install:
+  - pip install pytest coverage coveralls
 
 # # command to run tests, e.g. python setup.py test
 script:
-  - python setup.py nosetests --with-coverage --cover-package astar
+  - coverage run --source=astar -m pytest
 
 after_sucess:
   coveralls
