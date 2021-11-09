@@ -84,6 +84,25 @@ is\_goal\_reached
 This method shall return a truthy value when the goal is 'reached'. By
 default it checks that current == goal.
 
+"Functional" API.
+~~~~~~~~~~~~~~~~~
+
+If you dislike to have to inherit from the AStar class and create an instance in order to run the algorithm, the module also provides a "find_path" function, which takes functions as parameters and provides reasonnable defaults for some of them.
+
+See <https://github.com/jrialland/python-astar/blob/master/tests/basic/test_basic.py>
+
+.. code:: py
+
+    def find_path(
+    	start,
+    	goal,
+    	neighbors_fnct,
+    	reversePath=False,
+    	heuristic_cost_estimate_fnct = lambda a, b: Infinite,
+    	distance_between_fnct = lambda a, b: 1.0,
+    	is_goal_reached_fnct = lambda a, b: a == b
+    	)
+
 Examples
 --------
 
