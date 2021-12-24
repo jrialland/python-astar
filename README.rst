@@ -29,7 +29,7 @@ and completed with the implementation of several methods.
 The functions take/return _node_ objects.
 The `astar` library only requires the following property from these objects:
 
-> They must be hashable (i.e. implement `__hash__`).
+- They must be hashable (i.e. implement `__hash__`).
 
 For the default implementation of `is_goal_reached`, the objects must be
 comparable for same-ness (i.e. implement `__eq__`).
