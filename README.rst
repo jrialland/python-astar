@@ -1,8 +1,8 @@
 .. image:: https://badge.fury.io/py/astar.svg
     :target: https://badge.fury.io/py/astar
 
-.. image:: https://travis-ci.com/jrialland/python-astar.svg?branch=master
-    :target: https://travis-ci.com/jrialland/python-astar
+.. image:: https://app.travis-ci.com/jrialland/python-astar.svg?branch=master
+    :target: https://app.travis-ci.com/github/jrialland/python-astar
     
 .. image:: https://coveralls.io/repos/github/jrialland/python-astar/badge.svg?branch=master
     :target: https://coveralls.io/github/jrialland/python-astar?branch=master
