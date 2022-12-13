@@ -77,24 +77,37 @@ class AStar(ABC):
             return v
 
     @abstractmethod
-    def heuristic_cost_estimate(self, current, goal) -> float:
-        """Computes the estimated (rough) distance between a node and the goal, this method must be implemented in a subclass. The second parameter is always the goal."""
+    def heuristic_cost_estimate(self, current, goal):
+        """
+        Computes the estimated (rough) distance between a node and the goal.
+        The second parameter is always the goal.
+        This method must be implemented in a subclass.
+        """
         raise NotImplementedError
 
     @abstractmethod
-    def distance_between(self, n1, n2) -> float:
-        """Gives the real distance between two adjacent nodes n1 and n2 (i.e n2 belongs to the list of n1's neighbors).
+    def distance_between(self, n1, n2):
+        """
+        Gives the real distance between two adjacent nodes n1 and n2 (i.e n2
+        belongs to the list of n1's neighbors).
         n2 is guaranteed to belong to the list returned by the call to neighbors(n1).
-        This method must be implemented in a subclass."""
-        raise NotImplementedError
+        This method must be implemented in a subclass.
+        """
 
     @abstractmethod
     def neighbors(self, node):
-        """For a given node, returns (or yields) the list of its neighbors. this method must be implemented in a subclass"""
+        """
+        For a given node, returns (or yields) the list of its neighbors.
+        This method must be implemented in a subclass.
+        """
         raise NotImplementedError
 
     def is_goal_reached(self, current, goal):
-        """returns true when we can consider that 'current' is the goal"""
+        """
+        Returns true when we can consider that 'current' is the goal.
+        The default implementation simply compares `current == goal`, but this
+        method can be overwritten in a subclass to provide more refined checks.
+        """
         return current == goal
 
     def reconstruct_path(self, last, reversePath=False)->Iterable:

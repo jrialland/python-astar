@@ -9,7 +9,7 @@
 
 .. image:: https://img.shields.io/github/stars/jrialland/python-astar
     :target: https://github.com/jrialland/python-astar
-    
+
 .. image:: https://img.shields.io/github/forks/jrialland/python-astar
     :target: https://github.com/jrialland/python-astar
 
@@ -23,8 +23,23 @@ python
 Documentation
 -------------
 
-The astar module defines the AStar class, which has to be inherited from
-and completed with the implementation of several methods :
+The `astar` module defines the `AStar` class, which has to be inherited from
+and completed with the implementation of several methods.
+
+The functions take/return _node_ objects.
+The `astar` library only requires the following property from these objects:
+
+- They must be hashable (i.e. implement `__hash__`).
+
+For the default implementation of `is_goal_reached`, the objects must be
+comparable for same-ness (i.e. implement `__eq__`).
+
+A simple way to achieve this, is to use simple objects based on strings,
+floats, integers, tuples.
+[`dataclass`](https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass)
+objects declared with `@dataclass(frozen=True)` directly implement `__hash__`
+if possible.
+
 
 neighbors
 ~~~~~~~~~
@@ -34,11 +49,10 @@ neighbors
     @abstractmethod
     def neighbors(self, node)
 
-For a given node, returns (or yields) the list of its neighbors. this
-method must be implemented in a subclass
+For a given node, returns (or yields) the list of its neighbors.
 
 This is the method that one would provide in order to give to the
-algorithm the description of the graph to use during for computation
+algorithm the description of the graph to use during for computation.
 
 This method must be implemented in a subclass.
 
@@ -82,7 +96,8 @@ is\_goal\_reached
     def is_goal_reached(self, current, goal)
 
 This method shall return a truthy value when the goal is 'reached'. By
-default it checks that current == goal.
+default it checks that `current == goal`.
+
 
 "Functional" API.
 ~~~~~~~~~~~~~~~~~
