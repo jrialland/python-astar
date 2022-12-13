@@ -10,7 +10,8 @@ class BasicTests(unittest.TestCase):
            the shortest path is A -> C -> D -> B with a distance of 60
         """
         nodes = {'A': [('B', 100), ('C', 20)],
-                 'C': [('D', 20)], 'D': [('B', 20)]}
+                 'C': [('D', 20)], 
+                 'D': [('B', 20)]}
 
         def neighbors(n):
             for n1, d in nodes[n]:
