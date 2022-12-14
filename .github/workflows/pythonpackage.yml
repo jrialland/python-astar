@@ -24,4 +24,4 @@ jobs:
 # # command to run tests, e.g. python setup.py test
     - name: Tests
       run: |
-        python setup.py nosetests --with-coverage --cover-package astar
+        poetry run pytest
