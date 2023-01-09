@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "astar"
-version = "0.94"
+version = "0.95"
 description = "generic A-Star path searching algorithm"
 license = "BSD"
-authors = ["J Rialland <julien.rialland@altran.com>"]
+authors = ["J Rialland <julien.rialland@gmail.com>"]
 readme = "README.rst"
 repository = "https://github.com/jrialland/python-astar"
 classifiers = [
@@ -13,7 +13,6 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Information Analysis",
     "Programming Language :: Python",
 ]
-
 packages = [
     { include = "astar" },
 ]
