@@ -5,29 +5,6 @@ from abc import ABC, abstractmethod
 from heapq import heappush, heappop
 from typing import Iterable, Union, TypeVar, Generic
 
-__author__ = "Julien Rialland"
-__copyright__ = "Copyright 2012-2023, J.Rialland"
-__license__ = "BSD"
-__version__ = "0.95"
-__maintainer__ = __author__
-
-__email__ = "nc"
-
-try:
-    from cryptography.fernet import Fernet
-
-    __email__ = (
-        Fernet(b"nSR9r0WZ-SdMuyPGfLFyHT4Vu0pdfMTudDOcb9FrubE=")
-        .decrypt(
-            b"gAAAAABjvCkTri-mqyMjuR41C4WmejRO9ohHVX_6dXdva98OAIiHC8yRc4RDAXCZcoxz-Nnv12qO9BV4nQdJlx-gcK-eOws9hBXyKeFWUGkhp2YEaeYjrFs="
-        )
-        .decode("utf-8")
-    )
-except Exception as e:
-    pass
-
-__status__ = "Production"
-
 # infinity as a constant
 Infinite = float("inf")
 
