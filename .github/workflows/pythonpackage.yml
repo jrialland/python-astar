@@ -11,7 +11,6 @@ jobs:
         python-version: ["3.9", "3.10"]
 
     steps:
-    steps:
     - uses: actions/checkout@v3
     - name: Install poetry
       run: pipx install poetry
