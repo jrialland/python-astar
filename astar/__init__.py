@@ -258,7 +258,7 @@ def find_path(
         def neighbors(self, node) -> Iterable[U]:
             return neighbors_fnct(node)  # type: ignore
 
-        def is_goal_reached(self, current:U, goal:U) -> bool:
+        def is_goal_reached(self, current: U, goal: U) -> bool:
             return is_goal_reached_fnct(current, goal)
 
     return FindPath().astar(start, goal, reversePath)

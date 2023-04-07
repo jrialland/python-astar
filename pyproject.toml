@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "astar"
-version = "0.96"
+version = "0.97"
 description = "generic A-Star path searching algorithm"
 license = "BSD"
 authors = ["J Rialland <julien.rialland@gmail.com>"]
