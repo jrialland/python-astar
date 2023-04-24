@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """ generic A-Star path searching algorithm """
 
-import logging
 from abc import ABC, abstractmethod
-from heapq import heapify, heappush, heappop
-from typing import Type, Callable, Dict, Iterable, Union, TypeVar, Generic
+from typing import Callable, Dict, Iterable, Union, TypeVar, Generic
 from math import inf as infinity
+import sortedcontainers # type: ignore
 
 # introduce generic type
 T = TypeVar("T")
@@ -46,68 +45,7 @@ class SearchNodeDict(Dict[T, SearchNode[T]]):
 SNType = TypeVar("SNType", bound=SearchNode)
 
 
-class OpenSet(ABC, Generic[SNType]):
-    """As we may have performance issues with the heapq module when an item is
-    re-inserted, we may use other implementations for this feature.
-
-     - By default the HeapQOpenSet class just relies on the heapq module, it does not need any external dependency.
-
-     - The SortedContainersOpenSet class uses the sortedcointainers module. As
-       this module is optional, it will be used only if your own project
-       depends on it.
-
-    """
-
-    @abstractmethod
-    def push(self, item: SNType) -> None:
-        """Add an item to the queue"""
-        raise NotImplementedError
-
-    @abstractmethod
-    def pop(self) -> SNType:
-        """Remove and return the smallest item from the queue"""
-        raise NotImplementedError
-
-    @abstractmethod
-    def remove(self, item: SNType) -> None:
-        """remove an item from the queue, ensuring that the queue is still valid afterwards"""
-        raise NotImplementedError
-
-
-################################################################################
-class HeapQOpenSet(OpenSet[SNType], Generic[SNType]):
-    """just a wrapper around heapq operations"""
-
-    def __init__(self):
-        self.heap = []
-        heapify(self.heap)
-
-    def push(self, item: SNType) -> None:
-        """Add an item to the queue"""
-        item.in_openset = True
-        heappush(self.heap, item)
-
-    def pop(self) -> SNType:
-        """Remove and return the smallest item from the queue"""
-        item = heappop(self.heap)
-        item.in_openset = False
-        return item
-
-    def remove(self, item: SNType):
-        self.heap.remove(item)
-        heapify(
-            self.heap
-        )  # costly operation but necessary as remove operation destroy the structure of the heap
-        item.in_openset = False
-
-
-################################################################################
-OpenSetImpl: Type[OpenSet] = HeapQOpenSet
-
-try:
-    import sortedcontainers
-
-    class SortedContainersOpenSet(OpenSet[SNType], Generic[SNType]):
+class OpenSet(Generic[SNType]):
         def __init__(self):
             self.sortedlist = sortedcontainers.SortedList(key=lambda x: x.fscore)
 
@@ -124,15 +62,7 @@ try:
             self.sortedlist.remove(item)
             item.in_openset = False
 
-    OpenSetImpl = SortedContainersOpenSet
-    logging.info("using sortedcontainers for heap operations")
-
-except Exception as e:
-    logging.info("sortedcontainers module not loaded, using the default heapq module")
-
-
 ################################################################################*
-
 
 class AStar(ABC, Generic[T]):
     __slots__ = ()
@@ -189,7 +119,7 @@ class AStar(ABC, Generic[T]):
         if self.is_goal_reached(start, goal):
             return [start]
 
-        openSet: OpenSet[SearchNode[T]] = OpenSetImpl()
+        openSet: OpenSet[SearchNode[T]] = OpenSet()
         searchNodes: SearchNodeDict[T] = SearchNodeDict()
         startNode = searchNodes[start] = SearchNode(
             start, gscore=0.0, fscore=self.heuristic_cost_estimate(start, goal)
