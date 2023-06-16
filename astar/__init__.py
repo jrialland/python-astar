@@ -47,7 +47,7 @@ SNType = TypeVar("SNType", bound=SearchNode)
 
 class OpenSet(Generic[SNType]):
         
-        def __init__(self):
+        def __init__(self) -> None:
             self.sortedlist = sortedcontainers.SortedList(key=lambda x: x.fscore)
 
         def push(self, item: SNType) -> None:
@@ -59,11 +59,11 @@ class OpenSet(Generic[SNType]):
             item.in_openset = False
             return item
 
-        def remove(self, item: SNType):
+        def remove(self, item: SNType) -> None:
             self.sortedlist.remove(item)
             item.in_openset = False
 
-        def __len__(self):
+        def __len__(self) -> int:
             return len(self.sortedlist)
 
 ################################################################################*
