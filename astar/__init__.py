@@ -4,7 +4,7 @@
 from abc import ABC, abstractmethod
 from typing import Callable, Dict, Iterable, Union, TypeVar, Generic
 from math import inf as infinity
-import sortedcontainers # type: ignore
+import sortedcontainers  # type: ignore
 
 # introduce generic type
 T = TypeVar("T")
@@ -46,27 +46,28 @@ SNType = TypeVar("SNType", bound=SearchNode)
 
 
 class OpenSet(Generic[SNType]):
-        
-        def __init__(self) -> None:
-            self.sortedlist = sortedcontainers.SortedList(key=lambda x: x.fscore)
+    def __init__(self) -> None:
+        self.sortedlist = sortedcontainers.SortedList(key=lambda x: x.fscore)
 
-        def push(self, item: SNType) -> None:
-            item.in_openset = True
-            self.sortedlist.add(item)
+    def push(self, item: SNType) -> None:
+        item.in_openset = True
+        self.sortedlist.add(item)
 
-        def pop(self) -> SNType:
-            item = self.sortedlist.pop(0)
-            item.in_openset = False
-            return item
+    def pop(self) -> SNType:
+        item = self.sortedlist.pop(0)
+        item.in_openset = False
+        return item
 
-        def remove(self, item: SNType) -> None:
-            self.sortedlist.remove(item)
-            item.in_openset = False
+    def remove(self, item: SNType) -> None:
+        self.sortedlist.remove(item)
+        item.in_openset = False
 
-        def __len__(self) -> int:
-            return len(self.sortedlist)
+    def __len__(self) -> int:
+        return len(self.sortedlist)
+
 
 ################################################################################*
+
 
 class AStar(ABC, Generic[T]):
     __slots__ = ()
