@@ -14,6 +14,7 @@ pip install poetry
 
 
 #some checks
+poetry run black astar # reformat code
 poetry run mypy astar # check types
 poetry run pytest # unit tests
 
