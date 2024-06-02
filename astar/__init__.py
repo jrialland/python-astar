@@ -4,6 +4,7 @@
 from abc import ABC, abstractmethod
 from typing import Callable, Dict, Iterable, Union, TypeVar, Generic
 from math import inf as infinity
+from operator import attrgetter
 import sortedcontainers  # type: ignore
 
 # introduce generic type
@@ -47,7 +48,7 @@ SNType = TypeVar("SNType", bound=SearchNode)
 
 class OpenSet(Generic[SNType]):
     def __init__(self) -> None:
-        self.sortedlist = sortedcontainers.SortedList(key=lambda x: x.fscore)
+        self.sortedlist = sortedcontainers.SortedList(key=attrgetter("fscore"))
 
     def push(self, item: SNType) -> None:
         item.in_openset = True
@@ -98,6 +99,9 @@ class AStar(ABC, Generic[T]):
         """
         raise NotImplementedError
 
+    def _neighbors(self, current: SearchNode[T], search_nodes: SearchNodeDict[T]) -> Iterable[SearchNode]:
+        return (search_nodes[n] for n in self.neighbors(current.data))
+
     def is_goal_reached(self, current: T, goal: T) -> bool:
         """
         Returns true when we can consider that 'current' is the goal.
@@ -139,7 +143,7 @@ class AStar(ABC, Generic[T]):
 
             current.closed = True
 
-            for neighbor in map(lambda n: searchNodes[n], self.neighbors(current.data)):
+            for neighbor in self._neighbors(current, searchNodes):
                 if neighbor.closed:
                     continue
 
