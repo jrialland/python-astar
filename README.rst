@@ -34,7 +34,7 @@ The `astar` library only requires the following property from these objects:
 For the default implementation of `is_goal_reached`, the objects must be
 comparable for same-ness (i.e. implement `__eq__`).
 
-A simple way to achieve this, is to use simple objects based on strings,
+A simple way to achieve this is to use simple objects based on strings,
 floats, integers, tuples.
 [`dataclass`](https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass)
 objects declared with `@dataclass(frozen=True)` directly implement `__hash__`
@@ -54,7 +54,14 @@ For a given node, returns (or yields) the list of its neighbors.
 This is the method that one would provide in order to give to the
 algorithm the description of the graph to use during for computation.
 
-This method must be implemented in a subclass.
+Alternately, your override method may be named "path\_neighbors". Instead of
+your node, this method receives a "SearchNode" object whose "came_from"
+attribute points to the previous node; your node is in its "data" attribute.
+You might want to use this if your path is directional, like the track of a
+train that can't do 90° turns.
+
+One of these methods must be implemented in a subclass.
+
 
 distance\_between
 ~~~~~~~~~~~~~~~~~
@@ -68,7 +75,14 @@ Gives the real distance/cost between two adjacent nodes n1 and n2 (i.e
 n2 belongs to the list of n1's neighbors). n2 is guaranteed to belong to
 the list returned by a call to neighbors(n1).
 
-This method must be implemented in a subclass.
+Alternately, you may override "path\_distance\_between". The arguments
+will be a "SearchNode", as in "path\_neighbors". You might want to use this
+if your distance measure should include the path's attainable speed, the
+kind and number of turns on it, or similar. You can use the nodes' "cache"
+attributes to store some data, to speed up calculation.
+
+One of these methods must be implemented in a subclass.
+
 
 heuristic\_cost\_estimate
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -82,7 +96,7 @@ Computes the estimated (rough) distance/cost between a node and the
 goal. The first argument is the start node, or any node that have been
 returned by a call to the neighbors() method.
 
-This method is used to give to the algorithm an hint about the node he
+This method is used to give to the algorithm an hint about the node it
 may try next during search.
 
 This method must be implemented in a subclass.
@@ -91,7 +105,6 @@ is\_goal\_reached
 ~~~~~~~~~~~~~~~~~
 
 .. code:: py
-
 
     def is_goal_reached(self, current, goal)
 

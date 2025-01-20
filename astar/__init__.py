@@ -15,7 +15,7 @@ T = TypeVar("T")
 class SearchNode(Generic[T]):
     """Representation of a search node"""
 
-    __slots__ = ("data", "gscore", "fscore", "closed", "came_from", "in_openset")
+    __slots__ = ("data", "gscore", "fscore", "closed", "came_from", "in_openset", "cache")
 
     def __init__(
         self, data: T, gscore: float = infinity, fscore: float = infinity
@@ -26,6 +26,7 @@ class SearchNode(Generic[T]):
         self.closed = False
         self.in_openset = False
         self.came_from: Union[None, SearchNode[T]] = None
+        self.cache: Any = None
 
     def __lt__(self, b: "SearchNode[T]") -> bool:
         """Natural order is based on the fscore value & is used by heapq operations"""
@@ -84,29 +85,48 @@ class AStar(ABC, Generic[T]):
         """
         Computes the estimated (rough) distance between a node and the goal.
         The second parameter is always the goal.
+
         This method must be implemented in a subclass.
         """
         raise NotImplementedError
 
-    @abstractmethod
     def distance_between(self, n1: T, n2: T) -> float:
         """
         Gives the real distance between two adjacent nodes n1 and n2 (i.e n2
         belongs to the list of n1's neighbors).
         n2 is guaranteed to belong to the list returned by the call to neighbors(n1).
-        This method must be implemented in a subclass.
-        """
 
-    @abstractmethod
-    def neighbors(self, node: T) -> Iterable[T]:
-        """
-        For a given node, returns (or yields) the list of its neighbors.
-        This method must be implemented in a subclass.
+        This method (or "path_distance_between") must be implemented in a subclass.
         """
         raise NotImplementedError
 
+    def path_distance_between(self, n1: SearchNode[T], n2: SearchNode[T]) -> float:
+        """
+        Gives the real distance between the node n1 and its neighbor n2.
+        n2 is guaranteed to belong to the list returned by the call to
+        path_neighbors(n1).
+
+        Calls "distance_between"`by default.
+        """
+        return self.distance_between(n1.data, n2.data)
+
+    def neighbors(self, node: T) -> Iterable[T]:
+        """
+        For a given node, returns (or yields) the list of its neighbors.
+
+        This method (or "path_neighbors") must be implemented in a subclass.
+        """
+        raise NotImplementedError
+
+    def path_neighbors(self, node: SearchNode[T]) -> Iterable[T]:
+        """
+        For a given node, returns (or yields) the list of its reachable neighbors.
+        Calls "neighbors" by default.
+        """
+        return self.neighbors(node.data)
+
     def _neighbors(self, current: SearchNode[T], search_nodes: SearchNodeDict[T]) -> Iterable[SearchNode]:
-        return (search_nodes[n] for n in self.neighbors(current.data))
+        return (search_nodes[n] for n in self.path_neighbors(current))
 
     def is_goal_reached(self, current: T, goal: T) -> bool:
         """
@@ -153,25 +173,27 @@ class AStar(ABC, Generic[T]):
                 if neighbor.closed:
                     continue
 
-                tentative_gscore = current.gscore + self.distance_between(
-                    current.data, neighbor.data
-                )
+                gscore = current.gscore + self.path_distance_between(current, neighbor)
 
-                if tentative_gscore >= neighbor.gscore:
+                if gscore >= neighbor.gscore:
                     continue
 
-                neighbor_from_openset = neighbor.in_openset
+                fscore = gscore + self.heuristic_cost_estimate(
+                    neighbor.data, goal
+                )
 
-                if neighbor_from_openset:
+                if neighbor.in_openset:
+                    if neighbor.fscore < fscore:
+                        # the new path to this node isn't better
+                        continue
+
                     # we have to remove the item from the heap, as its score has changed
                     openSet.remove(neighbor)
 
                 # update the node
                 neighbor.came_from = current
-                neighbor.gscore = tentative_gscore
-                neighbor.fscore = tentative_gscore + self.heuristic_cost_estimate(
-                    neighbor.data, goal
-                )
+                neighbor.gscore = gscore
+                neighbor.fscore = fscore
 
                 openSet.push(neighbor)
 
