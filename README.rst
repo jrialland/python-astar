@@ -34,12 +34,10 @@ The `astar` library only requires the following property from these objects:
 For the default implementation of `is_goal_reached`, the objects must be
 comparable for same-ness (i.e. implement `__eq__`).
 
-A simple way to achieve this is to use simple objects based on strings,
-floats, integers, tuples.
-[`dataclass`](https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass)
-objects declared with `@dataclass(frozen=True)` directly implement `__hash__`
-if possible.
-
+The computation of the hash may be implemented by several means :
+ - base types like strings, floats, integers, tuples. already implement __hash__
+ - `dataclass https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass ` objects declared with `@dataclass(frozen=True)` directly implement `__hash__` if possible.
+ - by overriding the `__hash__() https://docs.python.org/3/reference/datamodel.html#object.__hash__` method as a combination of the fields that you consider relevant for your object.
 
 neighbors
 ~~~~~~~~~
