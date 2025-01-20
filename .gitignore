@@ -1,3 +1,7 @@
+# cache files
+.mypy_cache/
+.pytest_cache/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
