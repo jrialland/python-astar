@@ -19,7 +19,6 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0.0"
-sortedcontainers = ">=2.4.0"
 
 [tool.poetry.dev-dependencies]
 black = ">=23.3.0"

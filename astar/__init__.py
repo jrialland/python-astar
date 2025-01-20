@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 from typing import Callable, Dict, Iterable, Union, TypeVar, Generic
 from math import inf as infinity
 from operator import attrgetter
-import sortedcontainers  # type: ignore
+import heapq
 
 # introduce generic type
 T = TypeVar("T")
@@ -48,23 +48,29 @@ SNType = TypeVar("SNType", bound=SearchNode)
 
 class OpenSet(Generic[SNType]):
     def __init__(self) -> None:
-        self.sortedlist = sortedcontainers.SortedList(key=attrgetter("fscore"))
+        self.heap: list[SNType] = []
 
     def push(self, item: SNType) -> None:
         item.in_openset = True
-        self.sortedlist.add(item)
+        heapq.heappush(self.heap, item)
 
     def pop(self) -> SNType:
-        item = self.sortedlist.pop(0)
+        item = heapq.heappop(self.heap)
         item.in_openset = False
         return item
 
     def remove(self, item: SNType) -> None:
-        self.sortedlist.remove(item)
+        idx = self.heap.index(item)
         item.in_openset = False
+        item = self.heap.pop()
+        if idx < len(self.heap):
+            self.heap[idx] = item
+            # Fix heap invariants
+            heapq._siftup(self.heap, idx)
+            heapq._siftdown(self.heap, 0, idx)
 
     def __len__(self) -> int:
-        return len(self.sortedlist)
+        return len(self.heap)
 
 
 ################################################################################*
