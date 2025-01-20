@@ -18,6 +18,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'poetry'
+    - run: poetry lock
     - run: poetry install
     - run: poetry run pytest
 
