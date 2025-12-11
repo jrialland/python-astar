@@ -72,7 +72,7 @@ class MazeSolver(AStar):
         return math.hypot(x2 - x1, y2 - y1)
 
     def distance_between(self, n1, n2):
-        """this method always returns 1, as two 'neighbors' are always adajcent"""
+        """this method always returns 1, as two 'neighbors' are always adjacent"""
         return 1
 
     def neighbors(self, node):
