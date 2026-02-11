@@ -13,6 +13,8 @@
 .. image:: https://img.shields.io/github/forks/jrialland/python-astar
     :target: https://github.com/jrialland/python-astar
 
+.. image:: https://repobeats.axiom.co/api/embed/2e7245f5b553bf4fec1eea2e9ba9040b8e7992c7.svg
+
 python-astar
 ============
 
