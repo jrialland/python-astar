@@ -250,3 +250,5 @@ A solution for a codingame's puzzle (https://www.codingame.com/training/hard/tan
     OK
 
 
+.. image:: https://api.star-history.com/svg?repos=jrialland/python-astar&type=date&legend=top-left
+    :target: https://www.star-history.com/#jrialland/python-astar&type=date&legend=top-left
