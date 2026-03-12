@@ -16,7 +16,6 @@ jobs:
 
     permissions:
       contents: read
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -35,8 +34,17 @@ jobs:
       - name: Build distributions
         run: poetry build
 
+      - name: Check PyPI token is configured
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          if [ -z "$PYPI_TOKEN" ]; then
+            echo "PYPI_TOKEN secret is empty or unavailable in the pypi_release environment." >&2
+            exit 1
+          fi
+
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
-          password: ${{ secrets.PYPI_RELEASE }}
+          password: ${{ secrets.PYPI_TOKEN }}
