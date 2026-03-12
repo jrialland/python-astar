@@ -7,6 +7,8 @@ from math import inf as infinity
 from operator import attrgetter
 import heapq
 
+__version__ = "1.1"
+
 # introduce generic type
 T = TypeVar("T")
 

@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "astar"
-version = "0.99"
+version = "1.1"
 description = "generic A-Star path searching algorithm"
 license = "BSD"
 authors = ["J Rialland <julien.rialland@gmail.com>"]
